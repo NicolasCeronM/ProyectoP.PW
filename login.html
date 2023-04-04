@@ -1,0 +1,248 @@
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/MyStyle.css">
+    <!--Importar Boostrap-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="	https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css">
+    <title>Document</title>
+</head>
+
+<body>
+    <header class="mb-5">
+        <nav class="navbar" style="background-color: black">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="index.html">
+                    <img src="img/images.png" alt="Logo" width="200" height="100" class="d-inline-block align-text-top">
+                </a>
+
+                <!--Barra de navegacion-->
+                <nav class="navbar navbar-expand-lg navbar " style="background: black;">
+                    <div class="container-fluid">
+                        <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false"
+                            aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+                        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                            <ul class="navbar-nav nav-underline">
+                                <li class="nav-item">
+                                    <a class="nav-link link-light" href="index.html">Inicio</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link link-light" href="juguestes.html">Juguestes</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link link-light" href="medicamentos.html">Medicamentos</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link link-light" href="comida.html">Comida</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link link-light" href="ropa.html">Ropa</a>
+                                </li>
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle link-light" href="#" role="button"
+                                        data-bs-toggle="dropdown" aria-expanded="false">
+                                        ADOPTA
+                                    </a>
+                                    <ul class="dropdown-menu">
+                                        <li><a class="dropdown-item" href="#">Perros</a></li>
+                                        <li><a class="dropdown-item" href="#">Gatos</a></li>
+                                        <li><a class="dropdown-item" href="#">Ratones</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </nav>
+
+                <!--Link de encabezado-->
+                <ul class="nav justify-content-end">
+                    <li class="nav-item">
+                        <!--Mi cuenta-->
+                        <button class="nav-link link-light mr-3" aria-current="page" href="#"><i
+                                class="fa-solid fa-circle-user fa-2xl" style="color: #fffafa;"></i> Mi cuenta </button>
+                    </li>
+                    <!--Mi Carro-->
+                    <li class="nav-item">
+                        <button class="nav-link link-light" href="#"> <i class="fa-solid fa-cart-shopping fa-2xl"
+                                style="color: #ffffff;"></i> Mi carro</button>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <!--Inicio de sesion-->
+    <div class="container mt-3 mb-5 shadow rounded">
+
+        <div class="row">
+
+            <div class="col bg-black d-none d-lg-block">
+
+            </div>
+
+            <div class="col">
+                <h1 class="fw-light text-center mt-5">Bienvenido</h1>
+                <form action="#">
+                    <div class="form-floating mt-4">
+                        <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
+                        <label for="floatingInput">Correo</label>
+                    </div>
+                    <div class="form-floating mt-4">
+                        <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
+                        <label for="floatingPassword">Contraseña</label>
+                    </div>
+                    <div class="form-check form-switch mt-4">
+                        <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
+                        <label class="form-check-label" for="flexSwitchCheckDefault">Recuerdame</label>
+                    </div>
+                    <div class="d-grid gap-2 mt-4">
+                        <button type="button" class="btn btn-outline-success">Iniciar Sesión</button>
+                    </div>
+                    <div class="mt-4">
+                        <span>No tienes cuenta? <a href="">Registrate</a></span> <br>
+                        <span>Eres olividadizo? <a href="">Recuperar cuenta</a></span>
+
+                    </div>
+                </form>
+
+                <div class="container w-100 my-5">
+                    <div class="row text-center">
+                        <div class="col-12 mb-4">Iniciar Sesión</div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <button class="btn btn-outline-primary w-100">
+                                <div class="row align-items-center">
+                                    <div class="col-2">
+                                        <i class="fa-brands fa-facebook fa-2xl" style="color: #005eff;"></i>
+                                    </div>
+                                    <div class="col-10 text-center">
+                                        Facebook
+                                    </div>
+                                </div>
+
+                            </button>
+                        </div>
+
+                        <div class="col">
+                            <button class="btn btn-outline-danger w-100">
+                                <div class="row align-items-center">
+                                    <div class="col-2">
+                                        <i class="fa-brands fa-google fa-2xl" style="color: #ff0000;"></i>
+                                    </div>
+                                    <div class="col-10 text-center">
+                                        Google
+                                    </div>
+                                </div>
+
+                            </button>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+
+
+
+
+
+
+    <!--FOOTER-->
+
+    <footer class="container-fluid mt-3">
+
+        <div class="row p-5 bg-black text-white">
+
+            <div class="col-xs-12 col-md-6 col-lg-3">
+                <img src="img/images.png" alt="Imagen no encontrada" width="300" height="150">
+            </div>
+            <div class="col-xs-12 col-md-6 col-lg-3">
+                <p class="h5 text-decoration-underline">Otra cosa</p>
+
+                <div class="mb-2 ">
+                    <a class="link-light link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover"
+                        href="">Link 1</a>
+                </div>
+                <div class="mb-2 ">
+                    <a class="link-light link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover"
+                        href="">Link 2</a>
+                </div>
+                <div class="mb-2 ">
+                    <a class="link-light link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover"
+                        href="">Link 3 </a>
+                </div>
+
+
+            </div>
+            <div class="col-xs-12 col-md-6 col-lg-3">
+                <p class="h5 text-decoration-underline">Redes sociales</p>
+                <div class="mb-2 ">
+                    <a class="link-light link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover"
+                        href=""><i class="fa-brands fa-instagram fa-lg" style="color: #ffffff;"></i> Instagram</a>
+                </div>
+                <div class="mb-2 ">
+                    <a class="link-light link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover"
+                        href=""><i class="fa-brands fa-facebook fa-lg"></i> Faceook</a>
+                </div>
+                <div class="mb-2 ">
+                    <a class="link-light link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover"
+                        href=""><i class="fa-brands fa-twitter fa-lg"></i> Twitter</a>
+                </div>
+            </div>
+            <div class="col-xs-12 col-md-6 col-lg-3">
+                <p class="h5 text-decoration-underline">Contactanos</p>
+                <div class="mb-2 ">
+                    <a class="link-light link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover"
+                        href="">Link 1</a>
+                </div>
+                <div class="mb-2 ">
+                    <a class="link-light link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover"
+                        href="">Link 2</a>
+                </div>
+                <div class="mb-2 ">
+                    <a class="link-light link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover"
+                        href="">Link 3 </a>
+                </div>
+            </div>
+
+        </div>
+
+    </footer>
+
+
+
+
+
+    <!--Importar Boostrap-->
+    <script src="	https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="	https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-qKXV1j0HvMUeCBQ+QVp7JcfGl760yU08IQ+GpUo5hlbpg51QRiuqHAJz8+BrxE/N"
+        crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/8cdff4000b.js" crossorigin="anonymous"></script>
+</body>
+
+</html>
