@@ -67,83 +67,58 @@
         </nav>
     </header>
 
-    <!--Inicio de sesion-->
-    <div class="container mt-3 mb-5 shadow rounded">
+    <!--registranuevo usuarior-->
 
-        <div class="row">
 
-            <div class="col d-none d-lg-block">
-                <img src="img/Logo/logo.jpg" alt="" class="img-fluid shadow">
+    <div class="container">
 
-            </div>
 
-            <div class="col">
-                <h1 class="fw-light text-center mt-5">Bienvenido</h1>
-                <form action="#" id="form">
-                    <div class="form-floating mt-4">
-                        <input type="text" class="form-control" id="login-correo" placeholder="name@example.com">
-                        <label for="login-correo">Correo</label>
-                    </div>
-                    <div class="form-floating mt-4">
-                        <input type="password" class="form-control" id="login-contra" placeholder="Password">
-                        <label for="floatingPassword">Contraseña</label>
-                    </div>
-                    <div class="form-check form-switch mt-4">
-                        <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
-                        <label class="form-check-label" for="flexSwitchCheckDefault">Recuerdame</label>
-                    </div>
-                    <div class="d-grid gap-2 mt-4">
-                        <button type="submit" class="btn btn-outline-success" id="login-enviar">Iniciar Sesión</button>
-                    </div>
-                    <div class="mt-4">
-                        <span>No tienes cuenta? <a href="registrar.html">Registrate</a></span> <br>
-                        <span>Eres olividadizo? <a href="">Recuperar cuenta</a></span>
+        <form class="row justify-content-center ">
 
-                    </div>
-                </form>
+            <div class="col-lg-6 shadow p-4">
 
-                <div class="container w-100 my-5">
-                    <div class="row text-center">
-                        <div class="col-12 mb-4">Iniciar Sesión</div>
-                    </div>
-                    <div class="row">
-                        <div class="col">
-                            <button class="btn btn-outline-primary w-100">
-                                <div class="row align-items-center">
-                                    <div class="col-2">
-                                        <i class="fa-brands fa-facebook fa-2xl" style="color: #005eff;"></i>
-                                    </div>
-                                    <div class="col-10 text-center">
-                                        Facebook
-                                    </div>
-                                </div>
+                <h1 class="fw-light text-center mb-5">Registro</h1>
 
-                            </button>
-                        </div>
+                <div class="form-floating mb-3">
+                    <input type="text" class="form-control" id="nombre-reg" placeholder="name@example.com">
+                    <label for="floatingInput">Nombre</label>
+                </div>
 
-                        <div class="col">
-                            <button class="btn btn-outline-danger w-100">
-                                <div class="row align-items-center">
-                                    <div class="col-2">
-                                        <i class="fa-brands fa-google fa-2xl" style="color: #ff0000;"></i>
-                                    </div>
-                                    <div class="col-10 text-center">
-                                        Google
-                                    </div>
-                                </div>
+                <div class="form-floating mb-3">
+                    <input type="text" class="form-control" id="ap-registro" placeholder="name@example.com">
+                    <label for="floatingInput">Apellido</label>
+                </div>
 
-                            </button>
-                        </div>
-                    </div>
+                <div class="form-floating mb-3">
+                    <input type="email" class="form-control" id="correo-registro" placeholder="name@example.com">
+                    <label for="floatingInput">Correo</label>
+                </div>
 
+                <div class="form-floating">
+                    <input type="password" class="form-control" id="pass-registro" placeholder="Password">
+                    <label for="floatingPassword">Contraseña</label>
+                </div>
+
+                <div class="form-check mt-3">
+                    <input class="form-check-input" type="checkbox" value="" id="ckb_tyc">
+                    <label class="form-check-label" for="ckb_tyc">
+                        Acepto los <a href="">terminos y condiciones</a>
+                    </label>
+                </div>
+
+                <div class="d-grid gap-2 col-6 mx-auto mt-4">
+                    <button type="submit" class="btn btn-outline-success">Registrar</button>
+                    <button type="reset" class="btn btn-outline-danger">Limpiar</button>
+                </div>
+
+                <div class="text-center mt-3">
+                    <span><a href="login.html">Ya tengo cuenta</a></span>
                 </div>
 
             </div>
-
-
-        </div>
-
+        </form>
     </div>
+
 
 
 
