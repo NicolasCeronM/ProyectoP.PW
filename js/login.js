@@ -1,19 +1,35 @@
-var form = document.getElementById('form');
+var form = document.getElementById('form-registro');
+var registroPersonas = [];
 
-form.addEventListener('submit',login)
+form.addEventListener('submit',registrar)
 
 
-function login(){  
+function registrar(evn){
+    evn.preventDefault();
 
-    let correo = document.getElementById('login-correo').value
-    let contraseña = document.getElementById('login-contra').value
+    function Persona(nombre,apellido,correo,contra) {
 
-    if(correo === 'admin'){
-        alert('Bienvenido', correo);
-        window.location ="ss.html";
-    }else{
-        alert('NOSE QUIEN ERI');
+        this.nombre=nombre;
+        this.apellido = apellido;
+        this.correo = correo;
+        this.contra = contra;
+        
     }
 
-    console.log(correo, contraseña);
+    var nom = document.getElementById('nombre-reg').value;
+    var ap = document.getElementById('ap-registro').value;
+    var cor = document.getElementById('correo-registro').value;
+    var pass = document.getElementById('pass-registro').value;
+
+     nuevapersona = new Persona(nom,ap,cor, pass)
+
+    agregar();
+}
+
+function agregar(){
+
+    registroPersonas.push(nuevapersona);
+    console.log(registroPersonas);
+    window.location = "dashboard.html";
+
 }
