@@ -10,7 +10,7 @@ function login(){
 
     if(correo === 'admin'){
         alert('Bienvenido', correo);
-        location.href ="index.html"
+        window.location(index.html)
     }else{
         alert('NOSE QUIEN ERI');
     }
