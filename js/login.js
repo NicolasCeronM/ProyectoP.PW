@@ -30,6 +30,6 @@ function agregar(){
 
     registroPersonas.push(nuevapersona);
     console.log(registroPersonas);
-    window.location = "dashboard.html";
+    window.location = "dash-admin.html";
 
 }
