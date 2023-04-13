@@ -45,7 +45,7 @@
                 <li class="nav-item">
                   <a class="nav-link link-light" href="ropa.html">Ropa</a>
                 </li>
-                
+
               </ul>
             </div>
           </div>
@@ -59,14 +59,36 @@
                 class="fa-solid fa-circle-user fa-2xl" style="color: #fffafa;"></i> Mi cuenta </a>
           </li>
           <!--Mi Carro-->
+          <!-- Button trigger modal -->
           <li class="nav-item">
-            <button class="nav-link link-light" href="#"> <i class="fa-solid fa-cart-shopping fa-2xl"
-                style="color: #ffffff;"></i> Mi carro</button>
+            <button type="button" class="btn link-light" data-bs-toggle="modal" data-bs-target="#exampleModal"
+              style="background-color: black;">
+              <i class="fa-solid fa-cart-shopping fa-2xl mr-2" style="color: #ffffff;"></i></i>Mi carrito
+            </button>
           </li>
         </ul>
       </div>
     </nav>
   </header>
+
+  <!-- Modal carrito -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content bg-dark">
+        <div class="modal-header text-light">
+          <h1 class="modal-title fs-5 text-light" id="exampleModalLabel">Mi carro</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body text-light">
+          <h1>Carrito de compras vacio</h1>
+        </div>
+        <div class="modal-footer text-light">
+          <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">Vaciar</button>
+          <button type="button" class="btn btn-outline-success">Comprar</button>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <!--Catalogo de comida-->
   <div class="container mt-3">
