@@ -73,27 +73,27 @@
 
     <div class="container">
 
-        <form class="row justify-content-center form shadow p-4 needs-validation" id="form-registro">
+        <form class="row justify-content-center form shadow p-4 needs-validation" id="form-registro" autocomplete="off">
 
             <h1 class="fw-light text-center p-4">Datos personales</h1>
             <!--Registro persona-->
             <div class="col-lg-6 ">
 
                 <div class="form-floating mb-3 is-invalid">
-                    <input type="text" class="form-control" id="regNombre" placeholder="name@example.com" required>
+                    <input type="text" class="form-control" id="regNombre" placeholder="name@example.com" >
                     <label for="floatingInput">Nombre</label>
 
                     <div class="valid-feedback">
                         Looks good!
-                      </div>
+                    </div>
 
                     <div class="invalid-feedback">
                         Campo obligatorio
                     </div>
 
-                    
+
                 </div>
-                
+
 
             </div>
 
@@ -101,7 +101,7 @@
             <div class="col-lg-6">
 
                 <div class="form-floating mb-3 is-invalid">
-                    <input type="text" class="form-control" id="regApellido" placeholder="name@example.com" required>
+                    <input type="text" class="form-control" id="regApellido" placeholder="name@example.com">
                     <label for="floatingInput">Apellido</label>
 
                     <div class="invalid-feedback">
@@ -114,11 +114,11 @@
             <div class="col-lg-4">
 
                 <div class="form-floating mb-3 is-invalid">
-                    <input type="text" class="form-control" id="regRut" placeholder="name@example.com">
+                    <input type="text" class="form-control" id="regRut" placeholder="name@example.com" maxlength="10">
                     <label for="floatingInput">Rut</label>
 
-                    <div class="invalid-feedback">
-                        Campo obligatorio
+                    <div class="invalid-feedback" >
+                       <p id="fbRut"> Campo obligatorio </p>
                     </div>
                 </div>
 
@@ -140,11 +140,11 @@
             <div class="col-lg-4">
 
                 <div class="form-floating mb-3 is-invalid">
-                    <input type="email" class="form-control" id="regCorreo" placeholder="name@example.com">
+                    <input type="text" class="form-control" id="regCorreo" placeholder="name@example.com">
                     <label for="floatingInput">Correo</label>
 
                     <div class="invalid-feedback">
-                        Campo obligatorio
+                        <p id="fbCorreo"> Campo obligatorio</p>
                     </div>
                 </div>
 
@@ -157,7 +157,7 @@
                     <label for="floatingInput">Contraseña</label>
 
                     <div class="invalid-feedback">
-                        Campo obligatorio
+                       <P id="fbContra"> Campo obligatorio </P>
                     </div>
                 </div>
 
@@ -168,10 +168,6 @@
                 <div class="form-floating mb-3 is-invalid">
                     <input type="password" class="form-control" id="regPassRep" placeholder="name@example.com">
                     <label for="floatingInput">Confirme contraseña</label>
-
-                    <div class="invalid-feedback">
-                        Campo obligatorio
-                    </div>
                 </div>
 
             </div>
@@ -180,26 +176,11 @@
 
             <h1 class="fw-light text-center p-4">Crea tu nueva direccion</h1>
 
-            <div class="col-12">
+            <div class="col-9">
 
                 <div class="form-floating mb-3 is-invalid">
                     <input type="text" class="form-control" id="regDirec" placeholder="name@example.com">
                     <label for="floatingInput">Direccion</label>
-
-                    <div class="invalid-feedback">
-                        Campo obligatorio
-                    </div>
-                </div>
-
-            </div>
-
-            <div class="col-lg-6">
-
-                <div class="form-floating mb-3 is-invalid">
-                    <input type="text" class="form-control" id="regCiudad" placeholder="name@example.com">
-                    <label for="floatingInput">Ciudad</label>
-
-                    
 
                     <div class="invalid-feedback">
                         Campo obligatorio
@@ -224,6 +205,37 @@
             <div class="col-lg-3">
 
                 <div class="form-floating mb-3 is-invalid">
+                    <input type="text" class="form-control" id="regCiudad" placeholder="name@example.com">
+                    <label for="floatingInput">Ciudad</label>
+
+
+
+                    <div class="invalid-feedback">
+                        Campo obligatorio
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="col-lg-6">
+
+                <div class="form-floating mb-3 is-invalid">
+                    <input type="text" class="form-control" id="regRegion" placeholder="name@example.com" value="Region Metropolitana" disabled>
+                    <label for="floatingInput">Region</label>
+
+
+
+                    <div class="invalid-feedback">
+                        Campo obligatorio
+                    </div>
+                </div>
+
+            </div>
+
+
+            <div class="col-lg-3">
+
+                <div class="form-floating mb-3 is-invalid">
                     <input type="text" class="form-control" id="regComuna" placeholder="name@example.com">
                     <label for="floatingInput">Comuna</label>
 
@@ -235,20 +247,33 @@
             </div>
 
             <div class="form-check p-3 ms-5">
-                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                <input class="form-check-input" type="checkbox" value="" id="chkTerminos">
                 <!-- Button trigger modal -->
                 <label class="form-check-label" for="flexCheckDefault">
                     Acepto los <a type="button" style="color: green;" data-bs-toggle="modal"
                         data-bs-target="#exampleModal">
                         terminos y condiciones
-                    </a>
+                    </a><br>
+
+
                 </label>
             </div>
 
+            
+
             <div class="d-grid gap-2">
-                <button class="btn btn-outline-success" type="button" id="regEnviar">Registrar</button>
+                <button class="btn btn-outline-success" type="submit" id="regEnviar">Registrar</button>
                 <button class="btn btn-outline-danger" type="reset">Limpiar</button>
             </div>
+
+            <div class="text-center p-3">
+
+                <a href="login.html">Ya tengo cuenta</a>
+
+
+            </div>
+
+
 
         </form>
 
