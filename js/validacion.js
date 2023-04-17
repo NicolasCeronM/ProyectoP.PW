@@ -1,7 +1,6 @@
 var form_reg = document.getElementById("form-registro");
 
-var expReg =
-  /^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/;
+var expReg = /^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/;
 
 var nombre_reg = document.getElementById("regNombre");
 var apellido_reg = document.getElementById("regApellido");
@@ -111,3 +110,22 @@ function RegistroValidar(evn) {
     comuna_reg.classList.remove("is-invalid");
   }
 }
+
+
+$(function(){
+
+  $('#regRut').inputmask('99.999.999-9');
+  $('#regFono').inputmask('(+56 9) 9999 9999');
+
+  $('#regNombre').blur(function(){
+
+    if (nombre_reg.value === "") {
+      nombre_reg.classList.add("is-invalid");
+    } else {
+      nombre_reg.classList.remove("is-invalid");
+    }
+
+  })
+
+});
+
