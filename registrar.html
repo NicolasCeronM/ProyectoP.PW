@@ -73,19 +73,15 @@
 
     <div class="container">
 
-        <form class="row justify-content-center form shadow p-4 needs-validation" id="form-registro" autocomplete="off">
+        <form class="row justify-content-center form shadow p-4 needs-validation" id="form-registro" autocomplete="on">
 
             <h1 class="fw-light text-center p-4">Datos personales</h1>
             <!--Registro persona-->
             <div class="col-lg-6 ">
 
                 <div class="form-floating mb-3 is-invalid">
-                    <input type="text" class="form-control" id="regNombre" placeholder="name@example.com" >
+                    <input type="text" class="form-control" id="regNombre" placeholder="name@example.com" name="regNombre">
                     <label for="floatingInput">Nombre</label>
-
-                    <div class="valid-feedback">
-                        Looks good!
-                    </div>
 
                     <div class="invalid-feedback">
                         Campo obligatorio
@@ -101,7 +97,7 @@
             <div class="col-lg-6">
 
                 <div class="form-floating mb-3 is-invalid">
-                    <input type="text" class="form-control" id="regApellido" placeholder="name@example.com">
+                    <input type="text" class="form-control" id="regApellido" placeholder="name@example.com" name="regApellido">
                     <label for="floatingInput">Apellido</label>
 
                     <div class="invalid-feedback">
@@ -114,7 +110,7 @@
             <div class="col-lg-4">
 
                 <div class="form-floating mb-3 is-invalid">
-                    <input type="text" class="form-control" id="regRut" placeholder="name@example.com">
+                    <input type="text" class="form-control" id="regRut" placeholder="name@example.com" name="regRut">
                     <label for="floatingInput">Rut</label>
 
                     <div class="invalid-feedback" >
@@ -127,7 +123,7 @@
             <div class="col-lg-4">
 
                 <div class="form-floating mb-3 is-invalid">
-                    <input type="text" class="form-control" id="regFono" placeholder="name@example.com">
+                    <input type="text" class="form-control" id="regFono" placeholder="name@example.com" name="regFono">
                     <label for="floatingInput">Telefono</label>
 
                     <div class="invalid-feedback">
@@ -140,7 +136,7 @@
             <div class="col-lg-4">
 
                 <div class="form-floating mb-3 is-invalid">
-                    <input type="text" class="form-control" id="regCorreo" placeholder="name@example.com">
+                    <input type="text" class="form-control" id="regCorreo" placeholder="name@example.com" name="regCorreo">
                     <label for="floatingInput">Correo</label>
 
                     <div class="invalid-feedback">
@@ -153,7 +149,7 @@
             <div class="col-lg-6">
 
                 <div class="form-floating mb-3 is-invalid">
-                    <input type="password" class="form-control" id="regPass" placeholder="name@example.com">
+                    <input type="password" class="form-control" id="regPass" placeholder="name@example.com" name="regPass">
                     <label for="floatingInput">Contraseña</label>
 
                     <div class="invalid-feedback">
@@ -166,8 +162,11 @@
             <div class="col-lg-6">
 
                 <div class="form-floating mb-3 is-invalid">
-                    <input type="password" class="form-control" id="regPassRep" placeholder="name@example.com">
+                    <input type="password" class="form-control" id="regPassRep" placeholder="name@example.com" name="regPassRep">
                     <label for="floatingInput">Confirme contraseña</label>
+                    <div class="invalid-feedback">
+                        Las contraseñas deben coincidir
+                    </div>
                 </div>
 
             </div>
@@ -179,7 +178,7 @@
             <div class="col-lg-9">
 
                 <div class="form-floating mb-3 is-invalid">
-                    <input type="text" class="form-control" id="regDirec" placeholder="name@example.com">
+                    <input type="text" class="form-control" id="regDirec" placeholder="name@example.com" name="regDirec">
                     <label for="floatingInput">Direccion</label>
 
                     <div class="invalid-feedback">
@@ -192,7 +191,7 @@
             <div class="col-lg-3">
 
                 <div class="form-floating mb-3 is-invalid">
-                    <input type="text" class="form-control" id="regNum" placeholder="name@example.com">
+                    <input type="text" class="form-control" id="regNum" placeholder="name@example.com" name="regNum">
                     <label for="floatingInput">Numero</label>
 
                     <div class="invalid-feedback">
@@ -205,7 +204,7 @@
             <div class="col-lg-3">
 
                 <div class="form-floating mb-3 is-invalid">
-                    <input type="text" class="form-control" id="regComuna" placeholder="name@example.com">
+                    <input type="text" class="form-control" id="regComuna" placeholder="name@example.com" name="regComuna">
                     <label for="floatingInput">Comuna</label>
 
 
@@ -236,7 +235,7 @@
             <div class="col-lg-3">
 
                 <div class="form-floating mb-3 is-invalid">
-                    <input type="text" class="form-control" id="cpostalComuna" placeholder="name@example.com">
+                    <input type="text" class="form-control" id="cpostalComuna" placeholder="name@example.com" name="cpostalComuna">
                     <label for="floatingInput">Codigo postal</label>
 
                     <div class="invalid-feedback">

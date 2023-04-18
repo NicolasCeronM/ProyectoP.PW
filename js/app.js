@@ -1,171 +1,170 @@
-var form_reg = document.getElementById("form-registro");
-var usuarios = [];
+const form = document.getElementById("form-registro");
+const inputs = document.querySelectorAll("#form-registro input");
+const usuarios =[];
+
 const campos ={
-  nombre : false,
-  apellido : false,
-  rut : false,
-  fono : false,
-  correo : false,
-  pass : false
-}
+    regNombre : false,
+    regApellido : false,
+    regRut : false,
+    regFono : false,
+    regCorreo : false,
+    regPass : false,
+  
+    regDirec : false,
+    regNum : false,
+    regComuna : false,
+    cpostalComuna: false
+  }
 
-//Variavles de los ID de formulario
-var nombre_reg = document.getElementById("regNombre");
-var apellido_reg = document.getElementById("regApellido");
-var rut_reg = document.getElementById("regRut");
-var fono_reg = document.getElementById("regFono");
-var correo_reg = document.getElementById("regCorreo");
-var pass_reg = document.getElementById("regPass");
-var passRep_reg = document.getElementById("regPassRep");
-var direc_reg = document.getElementById("regDirec");
-var numDirec_reg = document.getElementById("regNum");
-var postal_reg = document.getElementById("cpostalComuna");
-var region_reg = document.getElementById("regRegion");
-var comuna_reg = document.getElementById("regComuna");
-var terminos_reg = document.getElementById("chkTerminos");
-
-form_reg.addEventListener("submit", Ingresar);
-
-function Ingresar(evn) {
-  evn.preventDefault();
-
-  validateCampos();
-
-  if(campos.apellido && campos.correo && campos.fono && campos.nombre && campos.pass && campos.rut){
-
-    console.log('Tamos bien')
-
-  }else{
-    console.log('Tamos mal')
+  //REGISTRO DE USUARIOS
+function registrarUsuario(evn) {
+    //evn.preventDefault();
+  
+    function Usuario(nombre, apellido, rut, telefono, correo, contraseña, direc) {
+      this.nombre = nombre;
+      this.apellido = apellido;
+      this.rut = rut;
+      this.telefono = telefono;
+      this.correo = correo;
+      this.contraseña = contraseña;
+      this.direc = direc;
+    }
+  
+    var Direccion = {
+      direc : document.getElementById('regDirec').value,
+      numero : document.getElementById('regNum').value,
+      comuna : document.getElementById('regComuna').value,
+      cod_postal : document.getElementById('cpostalComuna').value
+    }
+  
+    var usuario = new Usuario(
+        document.getElementById('regNombre').value,
+        document.getElementById('regApellido').value,
+        document.getElementById('regRut').value,
+        document.getElementById('regFono').value,
+        document.getElementById('regCorreo').value,
+        document.getElementById('regPass').value,
+        Direccion
+    );
+    agregar(usuario);
   }
   
-}
-
-//Fuyncion para validar input
-function validateCampos() {
-  if (nombre_reg.value.trim().length === 0) {
-    nombre_reg.classList.add("is-invalid");
-    campos['nombre'] = false;
-  } else {
-    nombre_reg.classList.remove("is-invalid");
-    campos['nombre'] = true;
+  //AGREGAR EL USUARIO AL ARRAY
+  function agregar(nuevoUsuario) {
+    usuarios.push(nuevoUsuario);
+    //window.location = 'login.html'
+    console.log(usuarios);
   }
+  
 
-  if (apellido_reg.value.trim().length == 0) {
-    apellido_reg.classList.add("is-invalid");
-    campos['apellido'] = false;
-  } else {
-    apellido_reg.classList.remove("is-invalid");
-    campos['apellido'] = true;
+const validarFormulario = (evn) => {
+  switch (evn.target.name) {
+    case "regNombre":
+      validarCampo(evn.target, evn.target.name);
+      break;
+
+    case "regApellido":
+      validarCampo(evn.target, evn.target.name);
+      break;
+
+    case "regRut":
+      validarCampo(evn.target, evn.target.name);
+      break;
+
+    case "regFono":
+      validarCampo(evn.target, evn.target.name);
+      break;
+
+    case "regCorreo":
+      validarCorreo();
+      break;
+
+    case "regPass":
+      validarCampo(evn.target, evn.target.name);
+      break;
+
+    case "regPassRep":
+      validarPass2();
+      break;
+
+    case "regDirec":
+      validarCampo(evn.target, evn.target.name);
+      break;
+
+    case "regNum":
+      validarCampo(evn.target, evn.target.name);
+      break;
+
+    case "regComuna":
+      validarCampo(evn.target, evn.target.name);
+      break;
+
+    case "cpostalComuna":
+      validarCampo(evn.target, evn.target.name);
+      break;
   }
+};
 
-  if (rut_reg.value.trim().length == 0) {
-    rut_reg.classList.add("is-invalid");
-    campos['rut'] = false;
-  } else {
-    rut_reg.classList.remove("is-invalid");
-    campos['rut'] = true;
-  }
-
-  if (fono_reg.value.trim().length == 0) {
-    fono_reg.classList.add("is-invalid");
-    campos['fono'] = false;
-  } else {
-    fono_reg.classList.remove("is-invalid");
-    campos['fono'] = true;
-  }
-
-  validateEmail(correo_reg);
-
-  validatePass(pass_reg, passRep_reg);
-
-  console.log(campos)
-
-}
-
-
-//Funcion para validar cooreo
-function validateEmail(input) {
-  var expReg =
-    /^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/;
-
-  if (input.value === "") {
-    input.classList.add("is-invalid");
-    campos['correo'] = false;
-  } else {
-    if (!expReg.test(input.value)) {
-      input.classList.add("is-invalid");
-
-      var error = document.getElementById("fbCorreo");
-      error.innerHTML = "Ingrese un correo valido";
-     campos['correo'] = false;
-    } else {
-      input.classList.remove("is-invalid");
-      campos['correo'] = true;
-    }
-  }
-}
-
-//Funncion para validar la misma contraseña
-function validatePass(input, input2) {
+//Validar campos vacios
+const validarCampo = (input, campo) => {
   if (input.value.trim().length === 0) {
-    input.classList.add("is-invalid");
-    input2.classList.add("is-invalid");
-    campos['pass'] = false;
+    document.getElementById(campo).classList.add("is-invalid");
+    campos[campo] = false;
+    
   } else {
-    if (input2.value.trim() !== input.value.trim()) {
-      input.classList.add("is-invalid");
-      input2.classList.add("is-invalid");
-
-      var error = document.getElementById("fbContra");
-      error.innerHTML = "Las contraseñas deben coincidir";
-      campos['pass'] = false;
-    } else {
-      input.classList.remove("is-invalid");
-      input2.classList.remove("is-invalid");
-      campos['pass'] = true;
-    }
+    document.getElementById(campo).classList.remove("is-invalid");
+    document.getElementById(campo).classList.add("is-valid");
+    campos[campo] = true;
   }
-}
+};
 
-//Formato a los inputs
-$(function () {
-  $("#regRut").inputmask("99.999.999-9");
-  $("#regFono").inputmask("(+56 9) 9999 9999");
+//Validar contraseñas iguales
+const validarPass2 = () => {
+  const pass1 = document.getElementById("regPass");
+  const pass2 = document.getElementById("regPassRep");
 
-  $("#regNombre").blur(function () {
-    if (nombre_reg.value.trim() === "") {
-      nombre_reg.classList.add("is-invalid");
-    } else {
-      nombre_reg.classList.remove("is-invalid");
-    }
-  });
+  if (pass1.value !== pass2.value) {
+    pass2.classList.add("is-invalid");
+    campos['regPass'] = false;
+  } else {
+    pass2.classList.remove("is-invalid");
+    pass2.classList.add("is-valid");
+    campos['regPass'] = true;
+  }
+};
+
+//Validar correo
+const validarCorreo = () =>{
+    var expR = /^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/;
+    const correo= document.getElementById('regCorreo');
+
+    if (!expR.test(correo.value)) {
+        correo.classList.add("is-invalid");
+  
+        var error = document.getElementById("fbCorreo");
+        error.innerHTML = "Ingrese un correo valido";
+        campos['regCorreo'] = false;
+      } else {
+        correo.classList.remove("is-invalid");
+        correo.classList.add("is-valid");
+        campos['regCorreo'] = true;
+      }
+} 
+
+inputs.forEach((input) => {
+  //input.addEventListener('keyup',validarFormulario);
+  input.addEventListener("blur", validarFormulario);
 });
 
-function registrarUsuario(evn) {
+form.addEventListener("submit", (evn) => {
   evn.preventDefault();
 
-  function Usuario(nombre, apellido, rut, telefono, correo, contraseña) {
-    this.nombre = nombre;
-    this.apellido = apellido;
-    this.rut = rut;
-    this.telefono = telefono;
-    this.correo = correo;
-    this.contraseña = contraseña;
+  if(campos.cpostalComuna && campos.regApellido && campos.regComuna && campos.regCorreo && campos.regDirec && campos.regFono && campos.regNombre && campos.regNum && campos.regPass && campos.regRut){
+    console.log('tamo bien');
+    console.log(campos)
+    registrarUsuario();
+  }else{
+    console.log('tamo mal')
+    console.log(campos)
   }
-
-  var usuario = new Usuario(
-    nombre_reg.value,
-    apellido_reg.value,
-    rut_reg.value,
-    fono_reg.value,
-    correo_reg.value,
-    pass_reg.value
-  );
-  agregar(usuario);
-}
-
-function agregar(nuevoUsuario) {
-  usuarios.push(nuevoUsuario);
-  console.log(usuarios);
-}
+});
