@@ -167,6 +167,17 @@ function mostrarError() {
     document.getElementById("alerta").style.display = "none";
   }, 5000);
 }
+//Mostrar correcto
+function mostrarCorrecto() {
+  
+  document.getElementById("alerta").style.display = "none";
+  document.getElementById("alerta-correcta").style.display = "block";
+  setTimeout(() => {
+    document.getElementById("alerta-correcta").style.display = "none";
+    
+  }, 500);
+  
+}
 
 inputs.forEach((input) => {
   input.addEventListener("keyup", validarFormulario);
@@ -193,8 +204,10 @@ form.addEventListener("submit", (evn) => {
       ck.classList.remove("is-invalid");
       ck.classList.add("is-valid");
 
+      
       registrarUsuario();
       form.reset();
+      mostrarCorrecto();
     } else {
       mostrarError();
       ck.classList.remove("is-valid");
