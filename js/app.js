@@ -51,7 +51,7 @@ function registrarUsuario(evn) {
 
 //AGREGAR EL USUARIO AL ARRAY
 function agregar(nuevoUsuario) {
-  usuarios.push(nuevoUsuario);
+  console.log(usuarios.push(nuevoUsuario));
   //window.location = 'login.html'
   console.log(usuarios);
 }
@@ -165,7 +165,7 @@ function mostrarError() {
   document.getElementById("alerta").style.display = "block";
   setTimeout(() => {
     document.getElementById("alerta").style.display = "none";
-  }, 5000);
+  }, 3000);
 }
 //Mostrar correcto
 function mostrarCorrecto() {
@@ -175,7 +175,7 @@ function mostrarCorrecto() {
   setTimeout(() => {
     document.getElementById("alerta-correcta").style.display = "none";
     
-  }, 500);
+  }, 3000);
   
 }
 
