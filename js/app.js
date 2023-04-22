@@ -106,7 +106,7 @@ const validarFormulario = (evn) => {
 
 //Validar campos vacios
 const validarCampo = (input, campo) => {
-  if (input.value.trim().length === 0) {
+  if (input.value.trim().length < 3) {
     document.getElementById(campo).classList.add("is-invalid");
     campos[campo] = false;
   } else {
