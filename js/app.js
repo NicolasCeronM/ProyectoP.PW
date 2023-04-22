@@ -15,6 +15,20 @@ const campos = {
   regComuna: false,
   cpostalComuna: false,
 };
+function resetCampos(){
+  campos.regNombre = false;
+  campos.cpostalComuna = false;
+  campos.regApellido = false;
+  campos.regComuna = false;
+  campos.regCorreo = false;
+  campos.regDirec = false;
+  campos.regFono = false;
+  campos.regNum = false;
+  campos.regPass = false;
+  campos.regRut = false;
+
+  
+}
 
 //REGISTRO DE USUARIOS
 function registrarUsuario(evn) {
@@ -182,6 +196,7 @@ function mostrarCorrecto() {
 inputs.forEach((input) => {
   input.addEventListener("keyup", validarFormulario);
   input.addEventListener("blur", validarFormulario);
+  ck.addEventListener('click',validarTerminos);
 });
 
 //Registrar
@@ -207,6 +222,7 @@ form.addEventListener("submit", (evn) => {
       
       registrarUsuario();
       form.reset();
+      resetCampos();
       mostrarCorrecto();
     } else {
       mostrarError();
