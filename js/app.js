@@ -1,5 +1,3 @@
-
-
 /*
 ***********************************************************
                       OTRSA SECCION
@@ -23,7 +21,7 @@ const campos = {
   regComuna: false,
   cpostalComuna: false,
 };
-function resetCampos(){
+function resetCampos() {
   campos.regNombre = false;
   campos.cpostalComuna = false;
   campos.regApellido = false;
@@ -35,7 +33,18 @@ function resetCampos(){
   campos.regPass = false;
   campos.regRut = false;
 
-  
+  document.getElementById('regNombre').classList.remove('is-valid');
+  document.getElementById('regApellido').classList.remove('is-valid');
+  document.getElementById('regRut').classList.remove('is-valid');
+  document.getElementById('regFono').classList.remove('is-valid');
+  document.getElementById('regCorreo').classList.remove('is-valid');
+  document.getElementById('regPass').classList.remove('is-valid');
+  document.getElementById('regPassRep').classList.remove('is-valid');
+  document.getElementById('regDirec').classList.remove('is-valid');
+  document.getElementById('regNum').classList.remove('is-valid');
+  document.getElementById('regComuna').classList.remove('is-valid');
+  document.getElementById('cpostalComuna').classList.remove('is-valid');
+  document.getElementById('chkTerminos').classList.remove('is-valid');
 }
 
 //REGISTRO DE USUARIOS
@@ -124,7 +133,7 @@ const validarFormulario = (evn) => {
 
     case "regComuna":
       //validarComuna();
-      console.log('hola')
+      console.log("hola");
       break;
 
     case "cpostalComuna":
@@ -149,30 +158,28 @@ const validarCampo = (input, campo) => {
 const validarRut = () => {
   const rut = document.getElementById("regRut");
 
-  if(rut.value.trim().length === 12){
+  if (rut.value.trim().length === 12) {
     rut.classList.remove("is-invalid");
     rut.classList.add("is-valid");
     campos["regRut"] = true;
-  }else{
+  } else {
     rut.classList.add("is-invalid");
     campos["regRut"] = false;
   }
-  
 };
 
 //Validar contraseña
 const validarPass = () => {
   const pass1 = document.getElementById("regPass");
 
-  if(pass1.value.trim().length >= 5 && pass1.value.trim().length <= 12){
+  if (pass1.value.trim().length >= 5 && pass1.value.trim().length <= 12) {
     pass1.classList.remove("is-invalid");
     pass1.classList.add("is-valid");
     campos["regPass"] = true;
-  }else{
+  } else {
     pass1.classList.add("is-invalid");
     campos["regPass"] = false;
   }
-  
 };
 
 //Validar contraseñas iguales
@@ -221,32 +228,29 @@ const validarTerminos = () => {
 };
 
 //VLIDAR SECTION DE COMUNAS
-const comuna = document.getElementById('regComuna');
-function validarComuna (){
-
-  if(comuna.value === 'Seleccione...'){
+const comuna = document.getElementById("regComuna");
+function validarComuna() {
+  if (comuna.value === "Seleccione...") {
     comuna.classList.add("is-invalid");
     campos["regComuna"] = false;
-  }else{
+  } else {
     comuna.classList.remove("is-invalid");
     comuna.classList.add("is-valid");
     campos["regComuna"] = true;
   }
-
-};
+}
 
 //MASCARS A LOS INPUTS
-$(function(){
-  $("#regRut").mask('00.000.000-0');
-  $("#regFono").mask('(+56 0) 0000 0000');
-})
+$(function () {
+  $("#regRut").mask("00.000.000-9");
+  $("#regFono").mask("(+56 0) 0000 0000");
+});
 
 /*
 ***********************************************************
                       OTRSA SECCION
 ***********************************************************
 */
-
 
 //Mostrar error
 function mostrarError() {
@@ -257,22 +261,19 @@ function mostrarError() {
 }
 //Mostrar correcto
 function mostrarCorrecto() {
-  
   document.getElementById("alerta").style.display = "none";
   document.getElementById("alerta-correcta").style.display = "block";
   setTimeout(() => {
     document.getElementById("alerta-correcta").style.display = "none";
-    
   }, 3000);
-  
 }
 
 //VALIDANDO LOS INPUT
 inputs.forEach((input) => {
   input.addEventListener("keyup", validarFormulario);
   input.addEventListener("blur", validarFormulario);
-  ck.addEventListener('click',validarTerminos);
-  comuna.addEventListener('change',validarComuna);
+  ck.addEventListener("click", validarTerminos);
+  comuna.addEventListener("change", validarComuna);
 });
 
 //Registrar
@@ -295,11 +296,13 @@ form.addEventListener("submit", (evn) => {
       ck.classList.remove("is-invalid");
       ck.classList.add("is-valid");
 
-      
-      registrarUsuario();
-      form.reset();
-      resetCampos();
-      mostrarCorrecto();
+      if (registrarUsuario()) {
+        alert('Error al agregar usuario')
+      }else{
+        mostrarCorrecto();
+        resetCampos();
+        form.reset();
+      }
     } else {
       mostrarError();
       ck.classList.remove("is-valid");
@@ -309,5 +312,3 @@ form.addEventListener("submit", (evn) => {
     mostrarError();
   }
 });
-
-
