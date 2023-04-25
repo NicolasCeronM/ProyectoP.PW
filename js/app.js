@@ -1,10 +1,10 @@
-//MASCARS A LOS INPUTS
-$(function(){
-  $("#regRut").mask('00.000.000-0');
-  $("#regFono").mask('(+56 0) 0000 0000');
 
-  console.log($('regComuna').value());
-})
+
+/*
+***********************************************************
+                      OTRSA SECCION
+***********************************************************
+*/
 
 const form = document.getElementById("form-registro");
 const inputs = document.querySelectorAll("#form-registro input");
@@ -78,6 +78,12 @@ function agregar(nuevoUsuario) {
   console.log(usuarios);
 }
 
+/*
+*****************************************************************
+            SECCION DE VALIDACION DE CAMPOS
+*****************************************************************
+*/
+
 const validarFormulario = (evn) => {
   switch (evn.target.name) {
     case "regNombre":
@@ -117,7 +123,8 @@ const validarFormulario = (evn) => {
       break;
 
     case "regComuna":
-      validarCampo(evn.target, evn.target.name);
+      //validarComuna();
+      console.log('hola')
       break;
 
     case "cpostalComuna":
@@ -212,6 +219,35 @@ const validarTerminos = () => {
     ck.classList.add("is-invalid");
   }
 };
+
+//VLIDAR SECTION DE COMUNAS
+const comuna = document.getElementById('regComuna');
+function validarComuna (){
+
+  if(comuna.value === 'Seleccione...'){
+    comuna.classList.add("is-invalid");
+    campos["regComuna"] = false;
+  }else{
+    comuna.classList.remove("is-invalid");
+    comuna.classList.add("is-valid");
+    campos["regComuna"] = true;
+  }
+
+};
+
+//MASCARS A LOS INPUTS
+$(function(){
+  $("#regRut").mask('00.000.000-0');
+  $("#regFono").mask('(+56 0) 0000 0000');
+})
+
+/*
+***********************************************************
+                      OTRSA SECCION
+***********************************************************
+*/
+
+
 //Mostrar error
 function mostrarError() {
   document.getElementById("alerta").style.display = "block";
@@ -231,10 +267,12 @@ function mostrarCorrecto() {
   
 }
 
+//VALIDANDO LOS INPUT
 inputs.forEach((input) => {
   input.addEventListener("keyup", validarFormulario);
   input.addEventListener("blur", validarFormulario);
   ck.addEventListener('click',validarTerminos);
+  comuna.addEventListener('change',validarComuna);
 });
 
 //Registrar

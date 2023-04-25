@@ -198,7 +198,7 @@
 
                 <div class="form-floating mb-3 is-invalid">
                     <input type="text" class="form-control" id="regNum" placeholder="name@example.com" name="regNum">
-                    <label for="floatingInput">Numero</label>
+                    <label for="regNum">Numero</label>
 
                     <div class="invalid-feedback">
                         Campo obligatorio
@@ -210,47 +210,48 @@
             <div class="col-lg-3">
 
                 <div class="form-floating mb-3">
-                    <select class="form-select" id="regComuna" aria-label="Floating label select example">
+                    <select class="form-select" id="regComuna" aria-label="Floating label select example" name="regComuna">
                         <option selected>Seleccione...</option>
-                        <option>Cerrillos</option>
-                        <option>Cerro Navia</option>
-                        <option>Conchalí</option>
-                        <option>El Bosque</option>
-                        <option>Estación Central</option>
-                        <option>Huechuraba</option>
-                        <option>Independencia</option>
-                        <option>La Cisterna</option>
-                        <option>La Granja</option>
-                        <option>La Florida</option>
-                        <option>La Pintana</option>
-                        <option>La Reina</option>
-                        <option>Las Condes</option>
-                        <option>Lo Barnechea</option>
-                        <option>Lo Espejo</option>
-                        <option>Lo Prado</option>
-                        <option>Macul</option>
-                        <option>Maipú</option>
-                        <option>Ñuñoa</option>
-                        <option>Pedro Aguirre Cerda</option>
-                        <option>Peñalolén</option>
-                        <option>Providencia</option>
-                        <option>Pudahuel</option>
-                        <option>Quilicura</option>
-                        <option>Quinta Normal</option>
-                        <option>Recoleta</option>
-                        <option>Renca</option>
-                        <option>San Miguel</option>
-                        <option>San Joaquín</option>
-                        <option>San Ramón</option>
-                        <option>Santiago</option>
-                        <option>Vitacura</option>
+                        <option value="Cerrillos">Cerrillos</option>
+                        <option value="Cerro Navia">Cerro Navia</option>
+                        <option value="Conchalí">Conchalí</option>
+                        <option value="El Bosque">El Bosque</option>
+                        <option value="Estación Central">Estación Central</option>
+                        <option value="Huechuraba">Huechuraba</option>
+                        <option value="Independencia">Independencia</option>
+                        <option value="La Cisterna">La Cisterna</option>
+                        <option value="La Granja">La Granja</option>
+                        <option value="La Florida">La Florida</option>
+                        <option value="La Pintana">La Pintana</option>
+                        <option value="La Reina">La Reina</option>
+                        <option value="Las Condes">Las Condes</option>
+                        <option value="Lo Barnechea">Lo Barnechea</option>
+                        <option value="Lo Espejo">Lo Espejo</option>
+                        <option value="Lo Prado">Lo Prado</option>
+                        <option value="Macul">Macul</option>
+                        <option value="Maipú">Maipú</option>
+                        <option value="Ñuñoa">Ñuñoa</option>
+                        <option value="Pedro Aguirre Cerda">Pedro Aguirre Cerda</option>
+                        <option value="Peñalolén">Peñalolén</option>
+                        <option value="Providencia">Providencia</option>
+                        <option value="Pudahuel">Pudahuel</option>
+                        <option value="Quilicura">Quilicura</option>
+                        <option value="Quinta Normal">Quinta Normal</option>
+                        <option value="Recoleta">Recoleta</option>
+                        <option value="Renca">Renca</option>
+                        <option value="San Miguel">San Miguel</option>
+                        <option value="San Joaquín">San Joaquín</option>
+                        <option value="San Ramón">San Ramón</option>
+                        <option value="Santiago">Santiago</option>
+                        <option value="Vitacura">Vitacura</option>
                     </select>
-                    <label for="floatingSelect">Comuna</label>
+                    <label for="regComuna">Comuna</label>
+                    <div class="invalid-feedback">
+                        Porfavor seleccione una comuna
+                    </div>
                 </div>
 
-                <div class="invalid-feedback">
-                    Campo obligatorio
-                </div>
+                
 
             </div>
 
@@ -260,8 +261,6 @@
                     <input type="text" class="form-control" id="regRegion" placeholder="name@example.com"
                         value="Region Metropolitana" disabled>
                     <label for="floatingInput">Region</label>
-
-
 
                     <div class="invalid-feedback">
                         Campo obligatorio
