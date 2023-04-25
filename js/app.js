@@ -1,3 +1,11 @@
+//MASCARS A LOS INPUTS
+$(function(){
+  $("#regRut").mask('00.000.000-0');
+  $("#regFono").mask('(+56 0) 0000 0000');
+
+  console.log($('regComuna').value());
+})
+
 const form = document.getElementById("form-registro");
 const inputs = document.querySelectorAll("#form-registro input");
 const usuarios = [];
@@ -81,7 +89,7 @@ const validarFormulario = (evn) => {
       break;
 
     case "regRut":
-      validarCampo(evn.target, evn.target.name);
+      validarRut();
       break;
 
     case "regFono":
@@ -93,7 +101,7 @@ const validarFormulario = (evn) => {
       break;
 
     case "regPass":
-      validarCampo(evn.target, evn.target.name);
+      validarPass();
       break;
 
     case "regPassRep":
@@ -128,6 +136,36 @@ const validarCampo = (input, campo) => {
     document.getElementById(campo).classList.add("is-valid");
     campos[campo] = true;
   }
+};
+
+//Validar rut
+const validarRut = () => {
+  const rut = document.getElementById("regRut");
+
+  if(rut.value.trim().length === 12){
+    rut.classList.remove("is-invalid");
+    rut.classList.add("is-valid");
+    campos["regRut"] = true;
+  }else{
+    rut.classList.add("is-invalid");
+    campos["regRut"] = false;
+  }
+  
+};
+
+//Validar contraseña
+const validarPass = () => {
+  const pass1 = document.getElementById("regPass");
+
+  if(pass1.value.trim().length >= 5 && pass1.value.trim().length <= 12){
+    pass1.classList.remove("is-invalid");
+    pass1.classList.add("is-valid");
+    campos["regPass"] = true;
+  }else{
+    pass1.classList.add("is-invalid");
+    campos["regPass"] = false;
+  }
+  
 };
 
 //Validar contraseñas iguales
@@ -233,3 +271,5 @@ form.addEventListener("submit", (evn) => {
     mostrarError();
   }
 });
+
+

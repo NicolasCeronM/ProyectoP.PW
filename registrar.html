@@ -116,7 +116,7 @@
                     <label for="floatingInput">Rut</label>
 
                     <div class="invalid-feedback">
-                        <p id="fbRut"> Campo obligatorio </p>
+                        <p id="fbRut">Ingrese rut valido</p>
                     </div>
                 </div>
 
@@ -157,7 +157,7 @@
                     <label for="floatingInput">Contraseña</label>
 
                     <div class="invalid-feedback">
-                        <P id="fbContra"> Campo obligatorio </P>
+                        <P id="fbContra">Ingrese una contraseña valida (entre 5 y 12 digitos)</P>
                     </div>
                 </div>
 
@@ -209,16 +209,47 @@
 
             <div class="col-lg-3">
 
-                <div class="form-floating mb-3 is-invalid">
-                    <input type="text" class="form-control" id="regComuna" placeholder="name@example.com"
-                        name="regComuna">
-                    <label for="floatingInput">Comuna</label>
+                <div class="form-floating mb-3">
+                    <select class="form-select" id="regComuna" aria-label="Floating label select example">
+                        <option selected>Seleccione...</option>
+                        <option>Cerrillos</option>
+                        <option>Cerro Navia</option>
+                        <option>Conchalí</option>
+                        <option>El Bosque</option>
+                        <option>Estación Central</option>
+                        <option>Huechuraba</option>
+                        <option>Independencia</option>
+                        <option>La Cisterna</option>
+                        <option>La Granja</option>
+                        <option>La Florida</option>
+                        <option>La Pintana</option>
+                        <option>La Reina</option>
+                        <option>Las Condes</option>
+                        <option>Lo Barnechea</option>
+                        <option>Lo Espejo</option>
+                        <option>Lo Prado</option>
+                        <option>Macul</option>
+                        <option>Maipú</option>
+                        <option>Ñuñoa</option>
+                        <option>Pedro Aguirre Cerda</option>
+                        <option>Peñalolén</option>
+                        <option>Providencia</option>
+                        <option>Pudahuel</option>
+                        <option>Quilicura</option>
+                        <option>Quinta Normal</option>
+                        <option>Recoleta</option>
+                        <option>Renca</option>
+                        <option>San Miguel</option>
+                        <option>San Joaquín</option>
+                        <option>San Ramón</option>
+                        <option>Santiago</option>
+                        <option>Vitacura</option>
+                    </select>
+                    <label for="floatingSelect">Comuna</label>
+                </div>
 
-
-
-                    <div class="invalid-feedback">
-                        Campo obligatorio
-                    </div>
+                <div class="invalid-feedback">
+                    Campo obligatorio
                 </div>
 
             </div>
@@ -575,9 +606,10 @@
 
     <!--Importar jquery-->
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.inputmask/5.0.8/jquery.inputmask.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
     <!--Importar jquerry-->
     <script src="js/app.js"></script>
+
     <!--Importar Boostrap-->
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.7/dist/umd/popper.min.js"
         integrity="sha384-zYPOMqeu1DAVkHiLqWBUTcbYfZ8osu1Nd6Z89ify25QV9guujx43ITvfi12/QExE"
