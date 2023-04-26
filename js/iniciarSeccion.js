@@ -15,9 +15,8 @@ function login() {
 
     if (mail.value === lista.correo && pass.value === lista.contraseña) {
 
-      alert("esta bien");
 
-      window.location = 'dash-admin.html'
+      window.location = 'dash-cli.html'
 
 
       return
