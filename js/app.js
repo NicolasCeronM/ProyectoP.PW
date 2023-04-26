@@ -1,12 +1,6 @@
-/*
-***********************************************************
-                      OTRSA SECCION
-***********************************************************
-*/
-
 const form = document.getElementById("form-registro");
 const inputs = document.querySelectorAll("#form-registro input");
-const usuarios = [];
+
 
 const campos = {
   regNombre: false,
@@ -47,6 +41,14 @@ function resetCampos() {
   document.getElementById('chkTerminos').classList.remove('is-valid');
 }
 
+/*
+***********************************************************
+                      CREANDO EL OBJETO 
+***********************************************************
+*/
+const usuarios = [];
+
+
 //REGISTRO DE USUARIOS
 function registrarUsuario(evn) {
   //evn.preventDefault();
@@ -83,8 +85,15 @@ function registrarUsuario(evn) {
 //AGREGAR EL USUARIO AL ARRAY
 function agregar(nuevoUsuario) {
   console.log(usuarios.push(nuevoUsuario));
-  //window.location = 'login.html'
   console.log(usuarios);
+  agregarLocalStorage(usuarios);
+}
+
+function agregarLocalStorage(lista){
+
+  localStorage.setItem('localUserList', JSON.stringify(lista))
+
+
 }
 
 /*
