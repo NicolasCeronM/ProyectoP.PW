@@ -12,6 +12,7 @@ const campos = {
 
   regDirec: false,
   regNum: false,
+  regRegion : false,
   regComuna: false,
   cpostalComuna: false,
 };
@@ -20,6 +21,7 @@ function resetCampos() {
   campos.cpostalComuna = false;
   campos.regApellido = false;
   campos.regComuna = false;
+  campos.regRegion = false;
   campos.regCorreo = false;
   campos.regDirec = false;
   campos.regFono = false;
@@ -36,6 +38,7 @@ function resetCampos() {
   document.getElementById('regPassRep').classList.remove('is-valid');
   document.getElementById('regDirec').classList.remove('is-valid');
   document.getElementById('regNum').classList.remove('is-valid');
+  document.getElementById('regRegion').classList.remove('is-valid');
   document.getElementById('regComuna').classList.remove('is-valid');
   document.getElementById('cpostalComuna').classList.remove('is-valid');
   document.getElementById('chkTerminos').classList.remove('is-valid');
@@ -142,7 +145,6 @@ const validarFormulario = (evn) => {
 
     case "regComuna":
       //validarComuna();
-      console.log("hola");
       break;
 
     case "cpostalComuna":
@@ -236,16 +238,30 @@ const validarTerminos = () => {
   }
 };
 
-//VLIDAR SECTION DE COMUNAS
+//Validar comuna
 const comuna = document.getElementById("regComuna");
 function validarComuna() {
-  if (comuna.value === "Seleccione...") {
+  console.log(comuna.value)
+  if (comuna.value.trim() =="") {
     comuna.classList.add("is-invalid");
     campos["regComuna"] = false;
   } else {
     comuna.classList.remove("is-invalid");
     comuna.classList.add("is-valid");
     campos["regComuna"] = true;
+  }
+}
+
+//Vlidar region
+const region = document.getElementById("regRegion");
+function validarRegion() {
+  if (region.value === "Seleccione...") {
+    region.classList.add("is-invalid");
+    campos["regRegion"] = false;
+  } else {
+    region.classList.remove("is-invalid");
+    region.classList.add("is-valid");
+    campos["regRegion"] = true;
   }
 }
 
@@ -283,6 +299,7 @@ inputs.forEach((input) => {
   input.addEventListener("blur", validarFormulario);
   ck.addEventListener("click", validarTerminos);
   comuna.addEventListener("change", validarComuna);
+  region.addEventListener("change", validarRegion);
 });
 
 //Registrar
@@ -292,6 +309,7 @@ form.addEventListener("submit", (evn) => {
   if (
     campos.cpostalComuna &&
     campos.regApellido &&
+    campos.regRegion &&
     campos.regComuna &&
     campos.regCorreo &&
     campos.regDirec &&

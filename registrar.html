@@ -200,67 +200,34 @@
 
             </div>
 
+            <div class="col-lg-6">
+
+                <div class="form-floating mb-3">
+                    <select class="form-select" id="regRegion" aria-label="Floating label select example" name="regRegion">
+                        <option selected>Seleccione...</option>
+                    </select>
+                    <label for="regRegion">Region</label>
+                    <div class="invalid-feedback">
+                        Porfavor seleccione una region
+                    </div>
+                </div>
+
+            </div>
+
             <div class="col-lg-3">
 
                 <div class="form-floating mb-3">
-                    <select class="form-select" id="regComuna" aria-label="Floating label select example" name="regComuna">
-                        <option selected>Seleccione...</option>
-                        <option value="Cerrillos">Cerrillos</option>
-                        <option value="Cerro Navia">Cerro Navia</option>
-                        <option value="Conchalí">Conchalí</option>
-                        <option value="El Bosque">El Bosque</option>
-                        <option value="Estación Central">Estación Central</option>
-                        <option value="Huechuraba">Huechuraba</option>
-                        <option value="Independencia">Independencia</option>
-                        <option value="La Cisterna">La Cisterna</option>
-                        <option value="La Granja">La Granja</option>
-                        <option value="La Florida">La Florida</option>
-                        <option value="La Pintana">La Pintana</option>
-                        <option value="La Reina">La Reina</option>
-                        <option value="Las Condes">Las Condes</option>
-                        <option value="Lo Barnechea">Lo Barnechea</option>
-                        <option value="Lo Espejo">Lo Espejo</option>
-                        <option value="Lo Prado">Lo Prado</option>
-                        <option value="Macul">Macul</option>
-                        <option value="Maipú">Maipú</option>
-                        <option value="Ñuñoa">Ñuñoa</option>
-                        <option value="Pedro Aguirre Cerda">Pedro Aguirre Cerda</option>
-                        <option value="Peñalolén">Peñalolén</option>
-                        <option value="Providencia">Providencia</option>
-                        <option value="Pudahuel">Pudahuel</option>
-                        <option value="Quilicura">Quilicura</option>
-                        <option value="Quinta Normal">Quinta Normal</option>
-                        <option value="Recoleta">Recoleta</option>
-                        <option value="Renca">Renca</option>
-                        <option value="San Miguel">San Miguel</option>
-                        <option value="San Joaquín">San Joaquín</option>
-                        <option value="San Ramón">San Ramón</option>
-                        <option value="Santiago">Santiago</option>
-                        <option value="Vitacura">Vitacura</option>
+                    <select class="form-select" id="regComuna" aria-label="Floating label select example" name="regComuna" disabled>
+                        <option selected>Seleccione una region</option>
                     </select>
                     <label for="regComuna">Comuna</label>
                     <div class="invalid-feedback">
                         Porfavor seleccione una comuna
                     </div>
                 </div>
-
-                
-
             </div>
 
-            <div class="col-lg-6">
-
-                <div class="form-floating mb-3 is-invalid">
-                    <input type="text" class="form-control" id="regRegion" placeholder="name@example.com"
-                        value="Region Metropolitana" disabled>
-                    <label for="floatingInput">Region</label>
-
-                    <div class="invalid-feedback">
-                        Campo obligatorio
-                    </div>
-                </div>
-
-            </div>
+            
 
 
             <div class="col-lg-3">
@@ -601,6 +568,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
     <!--Importar jquerry-->
     <script src="js/app.js"></script>
+    <script src="js/apisConecction.js"></script>
 
     <!--Importar Boostrap-->
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.7/dist/umd/popper.min.js"
