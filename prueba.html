@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Ejemplo de tabla con botones de borrar y editar</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <style>
+      td, th {
+        text-align: center;
+      }
+      .btn-borrar {
+        background-color: #dc3545;
+        border-color: #dc3545;
+        color: #fff;
+      }
+      .btn-editar {
+        background-color: #007bff;
+        border-color: #007bff;
+        color: #fff;
+      }
+    </style>
+  </head>
+  <body>
+    <table id="mi-tabla" class="table table-striped">
+      <thead>
+        <tr>
+          <th>Dirección</th>
+          <th>Número</th>
+          <th>Región</th>
+          <th>Comuna</th>
+          <th>Código Postal</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+      </tbody>
+    </table>
+
+    <script>
+      const datos = [
+        {direc: 'Av. Brasil', numero: '7891', region: 'Región Metropolitana de Santiago', comuna: 'Renca', cod_postal: '23400000'},
+        {direc: 'Calle 25 de Mayo', numero: '345', region: 'Buenos Aires', comuna: 'San Fernando', cod_postal: '1646'},
+        {direc: 'Rua Augusta', numero: '2222', region: 'São Paulo', comuna: 'Bela Vista', cod_postal: '01310-100'}
+      ];
+
+      const tabla = document.querySelector('#mi-tabla tbody');
+
+      datos.forEach((dato) => {
+        const fila = document.createElement('tr');
+
+        const direcTd = document.createElement('td');
+        direcTd.textContent = dato.direc;
+        fila.appendChild(direcTd);
+
+        const numeroTd = document.createElement('td');
+        numeroTd.textContent = dato.numero;
+        fila.appendChild(numeroTd);
+
+        const regionTd = document.createElement('td');
+        regionTd.textContent = dato.region;
+        fila.appendChild(regionTd);
+
+        const comunaTd = document.createElement('td');
+        comunaTd.textContent = dato.comuna;
+        fila.appendChild(comunaTd);
+
+        const codPostalTd = document.createElement('td');
+        codPostalTd.textContent = dato.cod_postal;
+        fila.appendChild(codPostalTd);
+
+        const accionesTd = document.createElement('td');
+        const btnEditar = document.createElement('button');
+        btnEditar.textContent = 'Editar';
+        btnEditar.classList.add('btn', 'btn-editar');
+        accionesTd.appendChild(btnEditar);
+
+        const btnBorrar = document.createElement('button');
+        btnBorrar.textContent = 'Borrar';
+        btnBorrar.classList.add('btn', 'btn-borrar');
+        accionesTd.appendChild(btnBorrar);
+
+        fila.appendChild(accionesTd);
+
+        tabla.appendChild(fila);
+      });
+
+      const btnsBorrar = document.querySelectorAll('.btn-borrar');
+      const btnsEditar = document.querySelectorAll('.btn-editar');
+
+      btnsBorrar.forEach((btn) => {
+        btn.addEventListener('click', () => {
+          const fila = btn.closest('tr');
+          fila.remove();
+        });
+      });
+
+      btn

@@ -9,7 +9,7 @@ const regionSelect = document.getElementById('regRegion');
         .then(data => {
           // Obtener lista de regiones
           const regiones = data.regiones;
-          console.log(data.regiones)
+          //console.log(data.regiones)
 
           // Agregar opciones al select de regiones
           regiones.forEach(region => {
@@ -18,7 +18,7 @@ const regionSelect = document.getElementById('regRegion');
             //console.log(option.value)
             option.text = region.region;
             regionSelect.appendChild(option);
-            console.log(option)
+            //console.log(option)
           });
 
           // Función que actualiza las comunas disponibles según la región seleccionada

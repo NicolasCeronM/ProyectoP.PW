@@ -49,14 +49,14 @@ function resetCampos() {
 ***********************************************************
 */
 class Usuario {
-  constructor(nombre, apellido, rut, telefono, correo, contraseña, direc) {
+  constructor(nombre, apellido, rut, telefono, correo, contraseña, direc =[]) {
     this.nombre = nombre;
     this.apellido = apellido;
     this.rut = rut;
     this.telefono = telefono;
     this.correo = correo;
     this.contraseña = contraseña;
-    this.direc = direc;
+    this.direc =direc;
   }
 }
 
@@ -83,6 +83,10 @@ function registrarUsuario(evn) {
     document.getElementById("cpostalComuna").value
   );
 
+  //Usuario.direc.push(nuevaDireccion)
+  direcionList =[];
+  direcionList.push(nuevaDireccion);
+
   var usuario = new Usuario(
     document.getElementById("regNombre").value,
     document.getElementById("regApellido").value,
@@ -90,7 +94,7 @@ function registrarUsuario(evn) {
     document.getElementById("regFono").value,
     document.getElementById("regCorreo").value,
     document.getElementById("regPass").value,
-    nuevaDireccion
+    direcionList
   );
   agregar(usuario);
 }
