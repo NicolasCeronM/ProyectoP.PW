@@ -77,10 +77,22 @@
 
             <div class="container-fluid px-4">
 
-                <div class="row justify-content-center">
+                <div class="row justify-content-center shadow">
 
                     <h1 class="text-center p-3 fw-light">Mis direcciones</h1>
+
+                    <div class="d-grid gap-2 d-md-block mb-3">
+                        <!-- Button trigger modal -->
+                        <button type="button" class="btn btn-outline-success" data-bs-toggle="modal"
+                            data-bs-target="#staticBackdrop">
+                            <i class="fa-solid fa-plus me-2"></i>Nueva Direccion
+                        </button>
+                    </div>
+
+
+
                     <div class="table-responsive">
+
                         <table class="table table-striped text-center" id="tabla-direc">
 
                             <thead>
@@ -114,6 +126,103 @@
         </div>
     </div>
     <!-- /#page-content-wrapper -->
+    </div>
+
+
+
+
+
+    <!-- Modal -->
+    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="staticBackdropLabel">Modal title</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="col">
+
+                        <div class="form-floating mb-3 is-invalid">
+                            <input type="text" class="form-control" id="nuevaDirec" placeholder="name@example.com"
+                                name="regDirec">
+                            <label for="floatingInput">Direccion</label>
+
+                            <div class="invalid-feedback">
+                                Campo obligatorio
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="col">
+
+                        <div class="form-floating mb-3 is-invalid">
+                            <input type="text" class="form-control" id="nuevoNum" placeholder="name@example.com"
+                                name="regNum">
+                            <label for="regNum">Numero</label>
+
+                            <div class="invalid-feedback">
+                                Campo obligatorio
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="col">
+
+                        <div class="form-floating mb-3">
+                            <select class="form-select" id="regRegion" aria-label="Floating label select example"
+                                name="regRegion">
+                                <option selected>Seleccione...</option>
+                            </select>
+                            <label for="regRegion">Region</label>
+                            <div class="invalid-feedback">
+                                Porfavor seleccione una region
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="col">
+
+                        <div class="form-floating mb-3">
+                            <select class="form-select" id="regComuna" aria-label="Floating label select example"
+                                name="regComuna" disabled>
+                                <option selected>Seleccione una region</option>
+                            </select>
+                            <label for="regComuna">Comuna</label>
+                            <div class="invalid-feedback">
+                                Porfavor seleccione una comuna
+                            </div>
+                        </div>
+                    </div>
+
+
+
+
+                    <div class="col">
+
+                        <div class="form-floating mb-3 is-invalid">
+                            <input type="text" class="form-control" id="nuevoCpo" placeholder="name@example.com"
+                                name="cpostalComuna">
+                            <label for="floatingInput">Codigo postal</label>
+
+                            <div class="invalid-feedback">
+                                Campo obligatorio
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                    <button type="button" class="btn btn-success" id="regNuevaDirec">Registrar</button>
+                </div>
+            </div>
+        </div>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"></script>

@@ -1,97 +1,64 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <title>Ejemplo de tabla con botones de borrar y editar</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-    <style>
-      td, th {
-        text-align: center;
-      }
-      .btn-borrar {
-        background-color: #dc3545;
-        border-color: #dc3545;
-        color: #fff;
-      }
-      .btn-editar {
-        background-color: #007bff;
-        border-color: #007bff;
-        color: #fff;
-      }
-    </style>
-  </head>
-  <body>
-    <table id="mi-tabla" class="table table-striped">
-      <thead>
-        <tr>
-          <th>Dirección</th>
-          <th>Número</th>
-          <th>Región</th>
-          <th>Comuna</th>
-          <th>Código Postal</th>
-          <th>Acciones</th>
-        </tr>
-      </thead>
-      <tbody>
-      </tbody>
-    </table>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Ejemplo de actualización de tabla</title>
+</head>
+<body>
+  <table id="tabla-datos">
+    <thead>
+      <tr>
+        <th>Dirección</th>
+        <th>Número</th>
+        <th>Región</th>
+        <th>Comuna</th>
+        <th>Código Postal</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- Aquí se llenarán las filas de la tabla con datos dinámicos -->
+    </tbody>
+  </table>
 
-    <script>
-      const datos = [
-        {direc: 'Av. Brasil', numero: '7891', region: 'Región Metropolitana de Santiago', comuna: 'Renca', cod_postal: '23400000'},
-        {direc: 'Calle 25 de Mayo', numero: '345', region: 'Buenos Aires', comuna: 'San Fernando', cod_postal: '1646'},
-        {direc: 'Rua Augusta', numero: '2222', region: 'São Paulo', comuna: 'Bela Vista', cod_postal: '01310-100'}
-      ];
+  <script>
+    // Supongamos que esta es la variable con los nuevos datos
+    const datos = [
+      { direc: 'Av. Brasil', numero: '7891', region: 'Región Metropolitana de Santiago', comuna: 'Renca', cod_postal: '23400000' },
+      { direc: 'Av. Providencia', numero: '2214', region: 'Región Metropolitana de Santiago', comuna: 'Providencia', cod_postal: '7500000' },
+      { direc: 'Calle San Diego', numero: '486', region: 'Región Metropolitana de Santiago', comuna: 'Santiago', cod_postal: '8320000' }
+    ];
 
-      const tabla = document.querySelector('#mi-tabla tbody');
+    function actualizarTabla() {
+      // Obtenemos la tabla
+      const tabla = document.getElementById('tabla-datos');
 
-      datos.forEach((dato) => {
+      // Borramos todas las filas de la tabla
+      tabla.querySelectorAll('tbody tr').forEach(tr => tr.remove());
+
+      // Agregamos las filas con los nuevos datos
+      datos.forEach(dato => {
+        // Creamos una nueva fila y llenamos las celdas con los datos del objeto
         const fila = document.createElement('tr');
+        fila.innerHTML = `
+          <td>${dato.direc}</td>
+          <td>${dato.numero}</td>
+          <td>${dato.region}</td>
+          <td>${dato.comuna}</td>
+          <td>${dato.cod_postal}</td>
+          <td>
+            <button class="btn-editar"><i class="fas fa-edit"></i> Editar</button>
+            <button class="btn-borrar"><i class="fas fa-trash-alt"></i> Borrar</button>
+          </td>
+        `;
 
-        const direcTd = document.createElement('td');
-        direcTd.textContent = dato.direc;
-        fila.appendChild(direcTd);
-
-        const numeroTd = document.createElement('td');
-        numeroTd.textContent = dato.numero;
-        fila.appendChild(numeroTd);
-
-        const regionTd = document.createElement('td');
-        regionTd.textContent = dato.region;
-        fila.appendChild(regionTd);
-
-        const comunaTd = document.createElement('td');
-        comunaTd.textContent = dato.comuna;
-        fila.appendChild(comunaTd);
-
-        const codPostalTd = document.createElement('td');
-        codPostalTd.textContent = dato.cod_postal;
-        fila.appendChild(codPostalTd);
-
-        const accionesTd = document.createElement('td');
-        const btnEditar = document.createElement('button');
-        btnEditar.textContent = 'Editar';
-        btnEditar.classList.add('btn', 'btn-editar');
-        accionesTd.appendChild(btnEditar);
-
-        const btnBorrar = document.createElement('button');
-        btnBorrar.textContent = 'Borrar';
-        btnBorrar.classList.add('btn', 'btn-borrar');
-        accionesTd.appendChild(btnBorrar);
-
-        fila.appendChild(accionesTd);
-
-        tabla.appendChild(fila);
+        // Agregamos la fila a la tabla
+        tabla.querySelector('tbody').appendChild(fila);
       });
+    }
 
-      const btnsBorrar = document.querySelectorAll('.btn-borrar');
-      const btnsEditar = document.querySelectorAll('.btn-editar');
-
-      btnsBorrar.forEach((btn) => {
-        btn.addEventListener('click', () => {
-          const fila = btn.closest('tr');
-          fila.remove();
-        });
-      });
-
-      btn
+    // Ejecutamos la función de actualización al cargar la página
+    actualizarTabla();
+  </script>
+</body>
+</html>
