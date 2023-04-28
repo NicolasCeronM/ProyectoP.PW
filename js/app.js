@@ -1,7 +1,6 @@
 const form = document.getElementById("form-registro");
 const inputs = document.querySelectorAll("#form-registro input");
 
-
 const campos = {
   regNombre: false,
   regApellido: false,
@@ -12,7 +11,7 @@ const campos = {
 
   regDirec: false,
   regNum: false,
-  regRegion : false,
+  regRegion: false,
   regComuna: false,
   cpostalComuna: false,
 };
@@ -29,19 +28,19 @@ function resetCampos() {
   campos.regPass = false;
   campos.regRut = false;
 
-  document.getElementById('regNombre').classList.remove('is-valid');
-  document.getElementById('regApellido').classList.remove('is-valid');
-  document.getElementById('regRut').classList.remove('is-valid');
-  document.getElementById('regFono').classList.remove('is-valid');
-  document.getElementById('regCorreo').classList.remove('is-valid');
-  document.getElementById('regPass').classList.remove('is-valid');
-  document.getElementById('regPassRep').classList.remove('is-valid');
-  document.getElementById('regDirec').classList.remove('is-valid');
-  document.getElementById('regNum').classList.remove('is-valid');
-  document.getElementById('regRegion').classList.remove('is-valid');
-  document.getElementById('regComuna').classList.remove('is-valid');
-  document.getElementById('cpostalComuna').classList.remove('is-valid');
-  document.getElementById('chkTerminos').classList.remove('is-valid');
+  document.getElementById("regNombre").classList.remove("is-valid");
+  document.getElementById("regApellido").classList.remove("is-valid");
+  document.getElementById("regRut").classList.remove("is-valid");
+  document.getElementById("regFono").classList.remove("is-valid");
+  document.getElementById("regCorreo").classList.remove("is-valid");
+  document.getElementById("regPass").classList.remove("is-valid");
+  document.getElementById("regPassRep").classList.remove("is-valid");
+  document.getElementById("regDirec").classList.remove("is-valid");
+  document.getElementById("regNum").classList.remove("is-valid");
+  document.getElementById("regRegion").classList.remove("is-valid");
+  document.getElementById("regComuna").classList.remove("is-valid");
+  document.getElementById("cpostalComuna").classList.remove("is-valid");
+  document.getElementById("chkTerminos").classList.remove("is-valid");
 }
 
 /*
@@ -49,14 +48,8 @@ function resetCampos() {
                       CREANDO EL OBJETO 
 ***********************************************************
 */
-const usuarios = [];
-
-
-//REGISTRO DE USUARIOS
-function registrarUsuario(evn) {
-  //evn.preventDefault();
-
-  function Usuario(nombre, apellido, rut, telefono, correo, contraseña, direc) {
+class Usuario {
+  constructor(nombre, apellido, rut, telefono, correo, contraseña, direc) {
     this.nombre = nombre;
     this.apellido = apellido;
     this.rut = rut;
@@ -65,13 +58,30 @@ function registrarUsuario(evn) {
     this.contraseña = contraseña;
     this.direc = direc;
   }
+}
 
-  var Direccion = {
-    direc: document.getElementById("regDirec").value,
-    numero: document.getElementById("regNum").value,
-    comuna: document.getElementById("regComuna").value,
-    cod_postal: document.getElementById("cpostalComuna").value,
-  };
+class Direccion {
+  constructor(direc, numero, region, comuna, cod_postal) {
+    this.direc = direc;
+    this.numero = numero;
+    this.region = region;
+    this.comuna = comuna;
+    this.cod_postal = cod_postal;
+  }
+}
+const usuarios = [];
+
+//REGISTRO DE USUARIOS
+function registrarUsuario(evn) {
+  //evn.preventDefault();
+
+  var nuevaDireccion = new Direccion(
+    document.getElementById("regDirec").value,
+    document.getElementById("regNum").value,
+    document.getElementById("regRegion").value,
+    document.getElementById("regComuna").value,
+    document.getElementById("cpostalComuna").value
+  );
 
   var usuario = new Usuario(
     document.getElementById("regNombre").value,
@@ -80,7 +90,7 @@ function registrarUsuario(evn) {
     document.getElementById("regFono").value,
     document.getElementById("regCorreo").value,
     document.getElementById("regPass").value,
-    Direccion
+    nuevaDireccion
   );
   agregar(usuario);
 }
@@ -92,11 +102,8 @@ function agregar(nuevoUsuario) {
   agregarLocalStorage(usuarios);
 }
 
-function agregarLocalStorage(lista){
-
-  localStorage.setItem('localUserList', JSON.stringify(lista))
-
-
+function agregarLocalStorage(lista) {
+  localStorage.setItem("localUserList", JSON.stringify(lista));
 }
 
 /*
@@ -241,8 +248,8 @@ const validarTerminos = () => {
 //Validar comuna
 const comuna = document.getElementById("regComuna");
 function validarComuna() {
-  console.log(comuna.value)
-  if (comuna.value.trim() =="") {
+  console.log(comuna.value);
+  if (comuna.value.trim() == "") {
     comuna.classList.add("is-invalid");
     campos["regComuna"] = false;
   } else {
@@ -273,7 +280,7 @@ $(function () {
 
 /*
 ***********************************************************
-                      OTRSA SECCION
+                      MAIN
 ***********************************************************
 */
 
@@ -324,8 +331,8 @@ form.addEventListener("submit", (evn) => {
       ck.classList.add("is-valid");
 
       if (registrarUsuario()) {
-        alert('Error al agregar usuario')
-      }else{
+        alert("Error al agregar usuario");
+      } else {
         mostrarCorrecto();
         resetCampos();
         form.reset();
