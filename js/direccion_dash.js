@@ -57,7 +57,26 @@ function cargarTabla() {
     //Boton borrar
     const btnBorrar = document.createElement("button");
     btnBorrar.addEventListener('click',()=>{
-        fila.remove();
+      Swal.fire({
+        title: 'Estas seguro?',
+        text: "Esta direccion se eliminara!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        cancelButtonText: 'Cancelar',
+        confirmButtonText: 'Si, borrar!'
+      }).then((result) => {
+        if (result.isConfirmed) {
+          Swal.fire(
+            'Eliminada!',
+            'Tu direccion se a eliminado.',
+            'success'
+          )
+
+          fila.remove();
+        }
+      })
     })
 
     const iconBorrar = document.createElement("i");

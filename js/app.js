@@ -295,14 +295,6 @@ function mostrarError() {
     document.getElementById("alerta").style.display = "none";
   }, 3000);
 }
-//Mostrar correcto
-function mostrarCorrecto() {
-  document.getElementById("alerta").style.display = "none";
-  document.getElementById("alerta-correcta").style.display = "block";
-  setTimeout(() => {
-    document.getElementById("alerta-correcta").style.display = "none";
-  }, 3000);
-}
 
 //VALIDANDO LOS INPUT
 inputs.forEach((input) => {
@@ -337,16 +329,34 @@ form.addEventListener("submit", (evn) => {
       if (registrarUsuario()) {
         alert("Error al agregar usuario");
       } else {
-        mostrarCorrecto();
+        Swal.fire({
+          position: 'top-end',
+          icon: 'success',
+          title: 'Usuario registrado correctamente',
+          showConfirmButton: false,
+          timer: 1500
+        })
         resetCampos();
         form.reset();
       }
     } else {
-      mostrarError();
+      Swal.fire({
+        position: 'top-end',
+        icon: 'error',
+        title: 'porfavor llene todos los campos',
+        showConfirmButton: false,
+        timer: 1200
+      })
       ck.classList.remove("is-valid");
       ck.classList.add("is-invalid");
     }
   } else {
-    mostrarError();
+    Swal.fire({
+      position: 'top-end',
+      icon: 'error',
+      title: 'porfavor llene todos los campos',
+      showConfirmButton: false,
+      timer: 1200
+    })
   }
 });

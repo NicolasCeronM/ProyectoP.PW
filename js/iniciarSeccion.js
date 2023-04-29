@@ -24,9 +24,23 @@ function login() {
   }
 
   if(estaLogeado){
+    Swal.fire({
+      position: 'top-end',
+      icon: 'success',
+      title: 'Your work has been saved',
+      showConfirmButton: false,
+      timer: 1500
+    })
     window.location = 'dash-cli.html'
   }else{
-    console.log('No esta en base de datos')
+    Swal.fire({
+      title: 'Error',
+      text: 'Correo o contraseña erroneo',
+      icon: 'error',
+      confirmButtonText: 'Intentar denuevo',
+      footer: '<p>Si no tienes cuenta <a href="registrar.html">registrate</a></p>',
+      timer: 4000
+    })
   }
 }
 
