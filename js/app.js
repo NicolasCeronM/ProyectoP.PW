@@ -64,7 +64,9 @@ class Usuario {
 }
 
 class Direccion {
+  static contador = 0;
   constructor(nombre, direc, numero, region, comuna, cod_postal) {
+    this.id = ++Direccion.contador;
     this.nombre = nombre,
     this.direc = direc,
     this.numero = numero;
@@ -355,33 +357,36 @@ form.addEventListener("submit", (evn) => {
         alert("Error al agregar usuario");
       } else {
         Swal.fire({
-          position: "top-end",
+          position: "center",
           icon: "success",
           title: "Usuario registrado correctamente",
           showConfirmButton: false,
-          timer: 1500,
+          timer: 2000,
+          padding: '30px'
         });
         resetCampos();
         form.reset();
       }
     } else {
       Swal.fire({
-        position: "top-end",
+        position: "center",
         icon: "error",
         title: "porfavor llene todos los campos",
         showConfirmButton: false,
-        timer: 1200,
+        timer: 2000,
+        padding: '30px'
       });
       ck.classList.remove("is-valid");
       ck.classList.add("is-invalid");
     }
   } else {
     Swal.fire({
-      position: "top-end",
+      position: "center",
       icon: "error",
       title: "porfavor llene todos los campos",
       showConfirmButton: false,
-      timer: 1200,
+      timer: 2000,
+      padding: '30px'
     });
   }
 });

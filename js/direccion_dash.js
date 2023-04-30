@@ -1,5 +1,7 @@
 class Direccion {
+  static contador = 1;
   constructor(nombre, direc, numero, region, comuna, cod_postal) {
+    this.id = ++Direccion.contador;
     this.nombre = nombre,
     this.direc = direc,
     this.numero = numero;
@@ -24,7 +26,11 @@ function cargarTabla() {
 
   userDirec.forEach((datos) => {
     const fila = document.createElement("tr");
-    
+
+    const idTd = document.createElement("td");
+    idTd.textContent = datos.id;
+    fila.appendChild(idTd);
+
     const nombreTd = document.createElement("td");
     nombreTd.textContent = datos.nombre;
     fila.appendChild(nombreTd);
@@ -143,6 +149,7 @@ function actualizarTabla() {
     // Creamos una nueva fila y llenamos las celdas con los datos del objeto
     const fila = document.createElement("tr");
     fila.innerHTML = `
+        <td>${dato.id}</td>
         <td>${dato.nombre}</td>
         <td>${dato.direc}</td>
         <td>${dato.numero}</td>
