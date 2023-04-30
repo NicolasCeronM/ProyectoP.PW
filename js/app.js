@@ -9,6 +9,7 @@ const campos = {
   regCorreo: false,
   regPass: false,
 
+  regDirecNom: false,
   regDirec: false,
   regNum: false,
   regRegion: false,
@@ -22,6 +23,7 @@ function resetCampos() {
   campos.regComuna = false;
   campos.regRegion = false;
   campos.regCorreo = false;
+  campos.regDirecNombre = false;
   campos.regDirec = false;
   campos.regFono = false;
   campos.regNum = false;
@@ -35,6 +37,7 @@ function resetCampos() {
   document.getElementById("regCorreo").classList.remove("is-valid");
   document.getElementById("regPass").classList.remove("is-valid");
   document.getElementById("regPassRep").classList.remove("is-valid");
+  document.getElementById("regDirecNom").classList.remove("is-valid");
   document.getElementById("regDirec").classList.remove("is-valid");
   document.getElementById("regNum").classList.remove("is-valid");
   document.getElementById("regRegion").classList.remove("is-valid");
@@ -49,20 +52,21 @@ function resetCampos() {
 ***********************************************************
 */
 class Usuario {
-  constructor(nombre, apellido, rut, telefono, correo, contraseña, direc =[]) {
+  constructor(nombre, apellido, rut, telefono, correo, contraseña, direc = []) {
     this.nombre = nombre;
     this.apellido = apellido;
     this.rut = rut;
     this.telefono = telefono;
     this.correo = correo;
     this.contraseña = contraseña;
-    this.direc =direc;
+    this.direc = direc;
   }
 }
 
 class Direccion {
-  constructor(direc, numero, region, comuna, cod_postal) {
-    this.direc = direc;
+  constructor(nombre, direc, numero, region, comuna, cod_postal) {
+    this.nombre = nombre,
+    this.direc = direc,
     this.numero = numero;
     this.region = region;
     this.comuna = comuna;
@@ -76,6 +80,7 @@ function registrarUsuario(evn) {
   //evn.preventDefault();
 
   var nuevaDireccion = new Direccion(
+    document.getElementById("regDirecNom").value,
     document.getElementById("regDirec").value,
     document.getElementById("regNum").value,
     document.getElementById("regRegion").value,
@@ -84,7 +89,7 @@ function registrarUsuario(evn) {
   );
 
   //Usuario.direc.push(nuevaDireccion)
-  direcionList =[];
+  direcionList = [];
   direcionList.push(nuevaDireccion);
 
   var usuario = new Usuario(
@@ -131,11 +136,14 @@ const validarFormulario = (evn) => {
       break;
 
     case "regFono":
-      validarCampo(evn.target, evn.target.name);
+      validarTelefono();
       break;
 
     case "regCorreo":
       validarCorreo();
+      break;
+    case "regDirecNom":
+      validarCampo(evn.target, evn.target.name);
       break;
 
     case "regPass":
@@ -187,6 +195,20 @@ const validarRut = () => {
   } else {
     rut.classList.add("is-invalid");
     campos["regRut"] = false;
+  }
+};
+
+//Validar telefono
+const validarTelefono = () => {
+  const fono = document.getElementById("regFono");
+
+  if (fono.value.trim().length === 17) {
+    fono.classList.remove("is-invalid");
+    fono.classList.add("is-valid");
+    campos["regFono"] = true;
+  } else {
+    fono.classList.add("is-invalid");
+    campos["regFono"] = false;
   }
 };
 
@@ -309,12 +331,15 @@ inputs.forEach((input) => {
 form.addEventListener("submit", (evn) => {
   evn.preventDefault();
 
+  console.log(campos);
+
   if (
     campos.cpostalComuna &&
     campos.regApellido &&
     campos.regRegion &&
     campos.regComuna &&
     campos.regCorreo &&
+    campos.regDirecNom &&
     campos.regDirec &&
     campos.regFono &&
     campos.regNombre &&
@@ -330,33 +355,33 @@ form.addEventListener("submit", (evn) => {
         alert("Error al agregar usuario");
       } else {
         Swal.fire({
-          position: 'top-end',
-          icon: 'success',
-          title: 'Usuario registrado correctamente',
+          position: "top-end",
+          icon: "success",
+          title: "Usuario registrado correctamente",
           showConfirmButton: false,
-          timer: 1500
-        })
+          timer: 1500,
+        });
         resetCampos();
         form.reset();
       }
     } else {
       Swal.fire({
-        position: 'top-end',
-        icon: 'error',
-        title: 'porfavor llene todos los campos',
+        position: "top-end",
+        icon: "error",
+        title: "porfavor llene todos los campos",
         showConfirmButton: false,
-        timer: 1200
-      })
+        timer: 1200,
+      });
       ck.classList.remove("is-valid");
       ck.classList.add("is-invalid");
     }
   } else {
     Swal.fire({
-      position: 'top-end',
-      icon: 'error',
-      title: 'porfavor llene todos los campos',
+      position: "top-end",
+      icon: "error",
+      title: "porfavor llene todos los campos",
       showConfirmButton: false,
-      timer: 1200
-    })
+      timer: 1200,
+    });
   }
 });

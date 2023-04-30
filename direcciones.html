@@ -81,6 +81,7 @@
 
                             <thead>
                                 <tr>
+                                    <th>Nombre</th>
                                     <th>Direccion</th>
                                     <th>Numero</th>
                                     <th>Region</th>
@@ -126,6 +127,20 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
+                    <div class="col">
+
+                        <div class="form-floating mb-3 is-invalid">
+                            <input type="text" class="form-control" id="nuevoNombre" placeholder="name@example.com"
+                                name="nuevoNombre">
+                            <label for="floatingInput">Nombre</label>
+
+                            <div class="invalid-feedback">
+                                Campo obligatorio
+                            </div>
+                        </div>
+
+                    </div>
+
                     <div class="col">
 
                         <div class="form-floating mb-3 is-invalid">

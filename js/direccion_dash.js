@@ -1,6 +1,7 @@
 class Direccion {
-  constructor(direc, numero, region, comuna, cod_postal) {
-    this.direc = direc;
+  constructor(nombre, direc, numero, region, comuna, cod_postal) {
+    this.nombre = nombre,
+    this.direc = direc,
     this.numero = numero;
     this.region = region;
     this.comuna = comuna;
@@ -23,6 +24,11 @@ function cargarTabla() {
 
   userDirec.forEach((datos) => {
     const fila = document.createElement("tr");
+    
+    const nombreTd = document.createElement("td");
+    nombreTd.textContent = datos.nombre;
+    fila.appendChild(nombreTd);
+
     const direcTd = document.createElement("td");
     direcTd.textContent = datos.direc;
     fila.appendChild(direcTd);
@@ -76,8 +82,6 @@ function cargarTabla() {
 
           // }
 
-
-
           fila.remove();
         }
       });
@@ -102,6 +106,7 @@ var userLogiado = JSON.parse(localStorage.getItem("userLogiado"));
 function nuevaDireccion() {
   const userDirec = userLogiado.direc;
 
+  const nombre = document.getElementById("nuevoNombre");
   const direc = document.getElementById("nuevaDirec");
   const num = document.getElementById("nuevoNum");
   const region = document.getElementById("regRegion");
@@ -109,6 +114,7 @@ function nuevaDireccion() {
   const cpostal = document.getElementById("nuevoCpo");
 
   var nuevaDireccion2 = new Direccion(
+    nombre.value,
     direc.value,
     num.value,
     region.value,
@@ -137,6 +143,7 @@ function actualizarTabla() {
     // Creamos una nueva fila y llenamos las celdas con los datos del objeto
     const fila = document.createElement("tr");
     fila.innerHTML = `
+        <td>${dato.nombre}</td>
         <td>${dato.direc}</td>
         <td>${dato.numero}</td>
         <td>${dato.region}</td>

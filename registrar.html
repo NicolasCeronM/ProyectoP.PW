@@ -173,7 +173,21 @@
 
             <h1 class="fw-light text-center p-4">Crea tu nueva direccion</h1>
 
-            <div class="col-lg-9">
+            <div class="col-lg-4">
+
+                <div class="form-floating mb-3 is-invalid">
+                    <input type="text" class="form-control" id="regDirecNom" placeholder="name@example.com"
+                        name="regDirecNom">
+                    <label for="regDirecNom">Nombre</label>
+
+                    <div class="invalid-feedback">
+                        Campo obligatorio
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="col-lg-5">
 
                 <div class="form-floating mb-3 is-invalid">
                     <input type="text" class="form-control" id="regDirec" placeholder="name@example.com"
@@ -203,7 +217,8 @@
             <div class="col-lg-6">
 
                 <div class="form-floating mb-3">
-                    <select class="form-select" id="regRegion" aria-label="Floating label select example" name="regRegion">
+                    <select class="form-select" id="regRegion" aria-label="Floating label select example"
+                        name="regRegion">
                         <option selected>Seleccione...</option>
                     </select>
                     <label for="regRegion">Region</label>
@@ -217,7 +232,8 @@
             <div class="col-lg-3">
 
                 <div class="form-floating mb-3">
-                    <select class="form-select" id="regComuna" aria-label="Floating label select example" name="regComuna" disabled>
+                    <select class="form-select" id="regComuna" aria-label="Floating label select example"
+                        name="regComuna" disabled>
                         <option selected>Seleccione una region</option>
                     </select>
                     <label for="regComuna">Comuna</label>
@@ -227,7 +243,7 @@
                 </div>
             </div>
 
-            
+
 
 
             <div class="col-lg-3">
