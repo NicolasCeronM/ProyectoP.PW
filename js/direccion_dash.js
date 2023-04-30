@@ -8,10 +8,6 @@ class Direccion {
   }
 }
 
-var userLogiado = JSON.parse(localStorage.getItem("userLogiado"));
-var users = JSON.parse(localStorage.getItem("localUserList"));
-
-const userDirec = userLogiado.direc;
 const ref = document.getElementById("refrescar");
 
 //Ingresar direcciones
@@ -22,6 +18,9 @@ const tabla = document.getElementById("cuerpo-tabla");
 
 //Funcion para cargra objeto a la tabla
 function cargarTabla() {
+  var userLogiado = JSON.parse(localStorage.getItem("userLogiado"));
+  const userDirec = userLogiado.direc;
+
   userDirec.forEach((datos) => {
     const fila = document.createElement("tr");
     const direcTd = document.createElement("td");
@@ -56,28 +55,33 @@ function cargarTabla() {
 
     //Boton borrar
     const btnBorrar = document.createElement("button");
-    btnBorrar.addEventListener('click',()=>{
+    btnBorrar.addEventListener("click", () => {
       Swal.fire({
-        title: 'Estas seguro?',
+        title: "Estas seguro?",
         text: "Esta direccion se eliminara!",
-        icon: 'warning',
+        icon: "warning",
         showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        cancelButtonText: 'Cancelar',
-        confirmButtonText: 'Si, borrar!'
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        cancelButtonText: "Cancelar",
+        confirmButtonText: "Si, borrar!",
       }).then((result) => {
         if (result.isConfirmed) {
-          Swal.fire(
-            'Eliminada!',
-            'Tu direccion se a eliminado.',
-            'success'
-          )
+          Swal.fire("Eliminada!", "Tu direccion se a eliminado.", "success");
+
+          var userLogiado = JSON.parse(localStorage.getItem("userLogiado"));
+          const userDirec = userLogiado.direc;
+
+          // for(i in userDirec){
+
+          // }
+
+
 
           fila.remove();
         }
-      })
-    })
+      });
+    });
 
     const iconBorrar = document.createElement("i");
     iconBorrar.classList.add("fa-solid", "fa-trash-can");
@@ -93,9 +97,11 @@ function cargarTabla() {
 curepoTable.innerHTML = htmlTable;
 
 const btnRegistrar = document.getElementById("regNuevaDirec");
-
+var userLogiado = JSON.parse(localStorage.getItem("userLogiado"));
 //Funcion Obtener datos de registrar
 function nuevaDireccion() {
+  const userDirec = userLogiado.direc;
+
   const direc = document.getElementById("nuevaDirec");
   const num = document.getElementById("nuevoNum");
   const region = document.getElementById("regRegion");
@@ -109,24 +115,28 @@ function nuevaDireccion() {
     comuna.value,
     cpostal.value
   );
-  userLogiado.direc.push(nuevaDireccion2);
+  userDirec.push(nuevaDireccion2);
+  agregarLocalStorage(userLogiado);
   actualizarTabla();
+  Swal.fire("Creado!", "Tu direccion se creo de foema exitosa!", "success");
+  location.reload();
 }
 
 //Funcion registrar nueva direccion
 function actualizarTabla() {
-    // Obtenemos la tabla
-    const tabla = document.getElementById('tabla-direc');
+  var userLogiado = JSON.parse(localStorage.getItem("userLogiado"));
+  const userDirec = userLogiado.direc;
+  // Obtenemos la tabla
+  const tabla = document.getElementById("tabla-direc");
 
-    // Borramos todas las filas de la tabla
-    tabla.querySelectorAll('tbody tr').forEach(tr => tr.remove());
+  // Borramos todas las filas de la tabla
+  tabla.querySelectorAll("tbody tr").forEach((tr) => tr.remove());
 
-    // Agregamos las filas con los nuevos datos
-    userDirec.forEach(dato => {
-        
-      // Creamos una nueva fila y llenamos las celdas con los datos del objeto
-      const fila = document.createElement('tr');
-      fila.innerHTML = `
+  // Agregamos las filas con los nuevos datos
+  userDirec.forEach((dato) => {
+    // Creamos una nueva fila y llenamos las celdas con los datos del objeto
+    const fila = document.createElement("tr");
+    fila.innerHTML = `
         <td>${dato.direc}</td>
         <td>${dato.numero}</td>
         <td>${dato.region}</td>
@@ -137,28 +147,28 @@ function actualizarTabla() {
           <button class="btn btn-danger"><i class="fas fa-trash-alt"></i></button>
         </td>
       `;
-      // Agregamos la fila a la tabla
-      tabla.querySelector('tbody').appendChild(fila);
-    });
+    // Agregamos la fila a la tabla
+    tabla.querySelector("tbody").appendChild(fila);
+  });
+}
 
-    //console.log(userLogiado);
-    agregarLocalStorage(users);
-  }
+function agregarLocalStorage(newUserLogiado) {
+  var users = JSON.parse(localStorage.getItem("localUserList"));
 
-  function agregarLocalStorage(user){
-
-    for (let i in user){
-        if(user[i].rut === userLogiado.rut){
-
-            //console.log(userLogiado)
-            user.splice(i)
-            user.push(userLogiado);
-            break;
-        }
+  for (let i in users) {
+    if (users[i].rut === newUserLogiado.rut) {
+      users.splice(i);
+      users.push(newUserLogiado);
+      break;
     }
-    localStorage.setItem("localUserList", JSON.stringify(user));
   }
 
+  delete localStorage.localUserList;
+  localStorage.setItem("localUserList", JSON.stringify(users));
+
+  localStorage.removeItem(userLogiado);
+  localStorage.setItem("userLogiado", JSON.stringify(newUserLogiado));
+}
 
 /*
 --------------------------------------------------------
