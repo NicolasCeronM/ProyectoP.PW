@@ -20,4 +20,21 @@ telefono.value = userLogiado.telefono;
 correo.value = userLogiado.correo;
 contra.value = userLogiado.contraseña;
 
+addEventListener("DOMContentLoaded", function () {
+  if (!localStorage.getItem("showAlert")) {
+    const Toast = Swal.mixin({
+      toast: true,
+      position: "top-end",
+      showConfirmButton: false,
+      timer: 3000,
+      timerProgressBar: true,
+    });
 
+    Toast.fire({
+      icon: "success",
+      title: `Bienvenido ${userLogiado.nombre}`,
+    });
+    localStorage.setItem('showAlert', true);
+  }
+
+});

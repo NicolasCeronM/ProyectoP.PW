@@ -302,8 +302,9 @@ function validarRegion() {
 
 //MASCARS A LOS INPUTS
 $(function () {
-  $("#regRut").mask("00.000.000-9");
-  $("#regFono").mask("(+56 0) 0000 0000");
+  $("#regRut").mask("99.999.999-9");
+  $("#regFono").mask("(+56 0) 0000 0000");  
+  $("#cpostalComuna").mask("0000000");
 });
 
 /*
@@ -312,17 +313,10 @@ $(function () {
 ***********************************************************
 */
 
-//Mostrar error
-function mostrarError() {
-  document.getElementById("alerta").style.display = "block";
-  setTimeout(() => {
-    document.getElementById("alerta").style.display = "none";
-  }, 3000);
-}
 
 //VALIDANDO LOS INPUT
 inputs.forEach((input) => {
-  input.addEventListener("keyup", validarFormulario);
+  input.addEventListener("keydown", validarFormulario);
   input.addEventListener("blur", validarFormulario);
   ck.addEventListener("click", validarTerminos);
   comuna.addEventListener("change", validarComuna);

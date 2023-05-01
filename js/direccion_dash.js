@@ -2,9 +2,7 @@ class Direccion {
   static contador = 1;
   constructor(nombre, direc, numero, region, comuna, cod_postal) {
     this.id = ++Direccion.contador;
-    this.nombre = nombre,
-    this.direc = direc,
-    this.numero = numero;
+    (this.nombre = nombre), (this.direc = direc), (this.numero = numero);
     this.region = region;
     this.comuna = comuna;
     this.cod_postal = cod_postal;
@@ -108,31 +106,47 @@ curepoTable.innerHTML = htmlTable;
 
 const btnRegistrar = document.getElementById("regNuevaDirec");
 var userLogiado = JSON.parse(localStorage.getItem("userLogiado"));
+
 //Funcion Obtener datos de registrar
 function nuevaDireccion() {
   const userDirec = userLogiado.direc;
 
-  const nombre = document.getElementById("nuevoNombre");
-  const direc = document.getElementById("nuevaDirec");
-  const num = document.getElementById("nuevoNum");
-  const region = document.getElementById("regRegion");
-  const comuna = document.getElementById("regComuna");
-  const cpostal = document.getElementById("nuevoCpo");
+  const nombre = document.getElementById("nuevoNombre").value;
+  const direc = document.getElementById("nuevaDirec").value;
+  const num = document.getElementById("nuevoNum").value;
+  const region = document.getElementById("regRegion").value;
+  const comuna = document.getElementById("regComuna").value;
+  const cpostal = document.getElementById("nuevoCpo").value;
 
-  var nuevaDireccion2 = new Direccion(
-    nombre.value,
-    direc.value,
-    num.value,
-    region.value,
-    comuna.value,
-    cpostal.value
-  );
-  userDirec.push(nuevaDireccion2);
-  agregarLocalStorage(userLogiado);
-  actualizarTabla();
-  Swal.fire("Creado!", "Tu direccion se creo de foema exitosa!", "success");
-  location.reload();
+  if (nombre.length === 0 || direc.length === 0 || num.length === 0 || region.length === 0 || comuna.length === 0 || cpostal.length === 0) {
+    Swal.fire({
+      position: "center",
+      icon: "error",
+      title: "porfavor llene todos los campos",
+      showConfirmButton: false,
+      timer: 2000,
+    });
+  } else {
+    var nuevaDireccion2 = new Direccion(
+      nombre,
+      direc,
+      num,
+      region,
+      comuna,
+      cpostal
+    );
+
+    userDirec.push(nuevaDireccion2);
+    agregarLocalStorage(userLogiado);
+    actualizarTabla();
+    location.reload();
+  }
 }
+
+//Mascara de inputs
+$(function () {
+  $("#nuevoCpo").mask("0000000");
+});
 
 //Funcion registrar nueva direccion
 function actualizarTabla() {
