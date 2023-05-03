@@ -305,6 +305,7 @@ $(function () {
   $("#regRut").mask("99.999.999-9");
   $("#regFono").mask("(+56 0) 0000 0000");  
   $("#cpostalComuna").mask("0000000");
+  $("#regNum").mask("0000");
 });
 
 /*
@@ -316,7 +317,7 @@ $(function () {
 
 //VALIDANDO LOS INPUT
 inputs.forEach((input) => {
-  input.addEventListener("keydown", validarFormulario);
+  input.addEventListener("keyup", validarFormulario);
   input.addEventListener("blur", validarFormulario);
   ck.addEventListener("click", validarTerminos);
   comuna.addEventListener("change", validarComuna);
@@ -355,7 +356,7 @@ form.addEventListener("submit", (evn) => {
           icon: "success",
           title: "Usuario registrado correctamente",
           showConfirmButton: false,
-          timer: 2000,
+          timer: 1500,
           padding: '30px'
         });
         resetCampos();

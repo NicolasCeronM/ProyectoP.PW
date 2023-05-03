@@ -1,15 +1,3 @@
-class Direccion {
-  static contador = 1;
-  constructor(nombre, direc, numero, region, comuna, cod_postal) {
-    this.id = ++Direccion.contador;
-    (this.nombre = nombre), (this.direc = direc), (this.numero = numero);
-    this.region = region;
-    this.comuna = comuna;
-    this.cod_postal = cod_postal;
-  }
-}
-
-const ref = document.getElementById("refrescar");
 
 //Ingresar direcciones
 const curepoTable = document.getElementById("cuerpo-tabla");
@@ -17,99 +5,24 @@ htmlTable = "";
 
 const tabla = document.getElementById("cuerpo-tabla");
 
-//Funcion para cargra objeto a la tabla
-function cargarTabla() {
-  var userLogiado = JSON.parse(localStorage.getItem("userLogiado"));
-  const userDirec = userLogiado.direc;
-
-  userDirec.forEach((datos) => {
-    const fila = document.createElement("tr");
-
-    const idTd = document.createElement("td");
-    idTd.textContent = datos.id;
-    fila.appendChild(idTd);
-
-    const nombreTd = document.createElement("td");
-    nombreTd.textContent = datos.nombre;
-    fila.appendChild(nombreTd);
-
-    const direcTd = document.createElement("td");
-    direcTd.textContent = datos.direc;
-    fila.appendChild(direcTd);
-
-    const numeroTd = document.createElement("td");
-    numeroTd.textContent = datos.numero;
-    fila.appendChild(numeroTd);
-
-    const regionTd = document.createElement("td");
-    regionTd.textContent = datos.region;
-    fila.appendChild(regionTd);
-
-    const comunaTd = document.createElement("td");
-    comunaTd.textContent = datos.comuna;
-    fila.appendChild(comunaTd);
-
-    const codPostalTd = document.createElement("td");
-    codPostalTd.textContent = datos.cod_postal;
-    fila.appendChild(codPostalTd);
-
-    //Boton editas
-    const btnEditar = document.createElement("button");
-
-    const accionesTd = document.createElement("td");
-    const iconEditar = document.createElement("i");
-    iconEditar.classList.add("fa-regular", "fa-pen-to-square");
-    btnEditar.appendChild(iconEditar);
-    btnEditar.classList.add("btn", "btn-warning", "me-3");
-    accionesTd.appendChild(btnEditar);
-
-    //Boton borrar
-    const btnBorrar = document.createElement("button");
-    btnBorrar.addEventListener("click", () => {
-      Swal.fire({
-        title: "Estas seguro?",
-        text: "Esta direccion se eliminara!",
-        icon: "warning",
-        showCancelButton: true,
-        confirmButtonColor: "#3085d6",
-        cancelButtonColor: "#d33",
-        cancelButtonText: "Cancelar",
-        confirmButtonText: "Si, borrar!",
-      }).then((result) => {
-        if (result.isConfirmed) {
-          Swal.fire("Eliminada!", "Tu direccion se a eliminado.", "success");
-
-          var userLogiado = JSON.parse(localStorage.getItem("userLogiado"));
-          const userDirec = userLogiado.direc;
-
-          // for(i in userDirec){
-
-          // }
-
-          fila.remove();
-        }
-      });
-    });
-
-    const iconBorrar = document.createElement("i");
-    iconBorrar.classList.add("fa-solid", "fa-trash-can");
-    btnBorrar.appendChild(iconBorrar);
-    btnBorrar.classList.add("btn", "btn-danger");
-    accionesTd.appendChild(btnBorrar);
-
-    fila.appendChild(accionesTd);
-
-    tabla.appendChild(fila);
-  });
-}
-curepoTable.innerHTML = htmlTable;
-
 const btnRegistrar = document.getElementById("regNuevaDirec");
-var userLogiado = JSON.parse(localStorage.getItem("userLogiado"));
 
 //Funcion Obtener datos de registrar
 function nuevaDireccion() {
-  const userDirec = userLogiado.direc;
+  var contador = 1;
+  class Direccion {
+    
+    constructor(id,nombre, direc, numero, region, comuna, cod_postal) {
+      this.id = id;
+      (this.nombre = nombre), (this.direc = direc), (this.numero = numero);
+      this.region = region;
+      this.comuna = comuna;
+      this.cod_postal = cod_postal;
+    }
+  }
+  
+  var userLogiado = JSON.parse(localStorage.getItem("userLogiado"));
+  var userDirec = userLogiado.direc;
 
   const nombre = document.getElementById("nuevoNombre").value;
   const direc = document.getElementById("nuevaDirec").value;
@@ -118,7 +31,14 @@ function nuevaDireccion() {
   const comuna = document.getElementById("regComuna").value;
   const cpostal = document.getElementById("nuevoCpo").value;
 
-  if (nombre.length === 0 || direc.length === 0 || num.length === 0 || region.length === 0 || comuna.length === 0 || cpostal.length === 0) {
+  if (
+    nombre.length === 0 ||
+    direc.length === 0 ||
+    num.length < 4 ||
+    region.length === 0 ||
+    comuna.length === 0 ||
+    cpostal.length === 0
+  ) {
     Swal.fire({
       position: "center",
       icon: "error",
@@ -128,6 +48,7 @@ function nuevaDireccion() {
     });
   } else {
     var nuevaDireccion2 = new Direccion(
+      contador,
       nombre,
       direc,
       num,
@@ -136,16 +57,31 @@ function nuevaDireccion() {
       cpostal
     );
 
+    Swal.fire({
+      position: "center",
+      icon: "success",
+      title: "Direccion registrada correctamente",
+      showConfirmButton: false,
+      timer: 1200,
+      padding: '30px'
+    });
+
+    contador = contador+1;
+
     userDirec.push(nuevaDireccion2);
-    agregarLocalStorage(userLogiado);
+    
+   
     actualizarTabla();
+    agregarLocalStorage(userLogiado);
     location.reload();
+    
   }
 }
 
 //Mascara de inputs
 $(function () {
   $("#nuevoCpo").mask("0000000");
+  $("#nuevoNum").mask("0000");
 });
 
 //Funcion registrar nueva direccion
@@ -159,7 +95,7 @@ function actualizarTabla() {
   tabla.querySelectorAll("tbody tr").forEach((tr) => tr.remove());
 
   // Agregamos las filas con los nuevos datos
-  userDirec.forEach((dato) => {
+  userDirec.forEach((dato, i) => {
     // Creamos una nueva fila y llenamos las celdas con los datos del objeto
     const fila = document.createElement("tr");
     fila.innerHTML = `
@@ -171,13 +107,26 @@ function actualizarTabla() {
         <td>${dato.comuna}</td>
         <td>${dato.cod_postal}</td>
         <td>
-          <button class="btn btn-warning"><i class="fas fa-edit"></i></button>
-          <button class="btn btn-danger"><i class="fas fa-trash-alt"></i></button>
+          <button  class="btn btn-warning"><i class="fas fa-edit"></i></button>
+          <button onclick="eliminar(${i})" class="btn btn-danger"><i class="fas fa-trash-alt"></i></button>
         </td>
       `;
     // Agregamos la fila a la tabla
     tabla.querySelector("tbody").appendChild(fila);
   });
+}
+
+function eliminar(i) {
+  var userLogiado = JSON.parse(localStorage.getItem("userLogiado"));
+  var direccion = userLogiado.direc;
+
+  direccion.splice(i, 1);
+  actualizarTabla();
+
+  console.log(direccion);
+
+  agregarLocalStorage(userLogiado);
+  actualizarTabla();
 }
 
 function agregarLocalStorage(newUserLogiado) {
@@ -204,4 +153,4 @@ function agregarLocalStorage(newUserLogiado) {
 ---------------------------------------------------------
 */
 btnRegistrar.addEventListener("click", nuevaDireccion);
-addEventListener("DOMContentLoaded", cargarTabla);
+addEventListener("DOMContentLoaded", actualizarTabla);

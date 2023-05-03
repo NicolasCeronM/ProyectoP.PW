@@ -1,41 +1,118 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="UTF-8">
-    <title>Validación de formulario con Validator.js</title>
-    <script src="https://cdn.jsdelivr.net/npm/validator@13.6.0/dist/validator.js"></script>
-  </head>
-  <body>
-    <h1>Validación de formulario con Validator.js</h1>
-    
-    <form onsubmit="return validarFormulario()">
-      <label for="nombre">Nombre:</label>
-      <input type="text" id="nombre" name="nombre">
-      
-      <label for="correo">Correo electrónico:</label>
-      <input type="email" id="correo" name="correo">
-      
-      <button type="submit">Enviar</button>
-    </form>
-    
-    <script>
-      function validarFormulario() {
-        var nombre = document.getElementById("nombre").value;
-        var correo = document.getElementById("correo").value;
-        
-        if (validator.isEmpty(nombre)) {
-          alert("El campo nombre es obligatorio");
-          return false;
-        }
-        
-        if (!validator.isEmail(correo)) {
-          alert("El campo correo no es válido");
-          return false;
-        }
-        
-        // Si todos los campos son válidos, se puede enviar el formulario
-        return true;
-      }
-    </script>
-  </body>
-</html>
+<head>
+	<title>CRUD Básico</title>
+	<!-- Enlace a Bootstrap CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+</head>
+<body>
+	<div class="container">
+		<h1>CRUD Básico</h1>
+		<form>
+			<div class="form-group">
+				<label for="nombre">Nombre:</label>
+				<input type="text" class="form-control" id="nombre">
+			</div>
+			<div class="form-group">
+				<label for="apellido">Apellido:</label>
+				<input type="text" class="form-control" id="apellido">
+			</div>
+			<div class="form-group">
+				<label for="edad">Edad:</label>
+				<input type="number" class="form-control" id="edad">
+			</div>
+			<button type="button" class="btn btn-primary" onclick="agregar()">Agregar</button>
+		</form>
+		<br>
+		<table class="table">
+			<thead>
+				<tr>
+					<th>Nombre</th>
+					<th>Apellido</th>
+					<th>Edad</th>
+					<th>Acciones</th>
+				</tr>
+			</thead>
+			<tbody id="tbody"></tbody>
+		</table>
+	</div>
+
+	<!-- Enlace a Bootstrap JS y jQuery -->
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+	<script>
+		// Definición de la clase Persona
+		class Persona {
+			constructor(nombre, apellido, edad) {
+				this.nombre = nombre;
+				this.apellido = apellido;
+				this.edad = edad;
+			}
+		}
+
+		// Arreglo para almacenar las personas
+		let personas = [];
+
+		// Función para agregar una persona
+		function agregar() {
+			let nombre = document.getElementById("nombre").value;
+			let apellido = document.getElementById("apellido").value;
+			let edad = document.getElementById("edad").value;
+
+			let persona = new Persona(nombre, apellido, edad);
+			personas.push(persona);
+
+			actualizarTabla();
+		}
+
+		// Función para eliminar una persona
+		function eliminar(index) {
+			personas.splice(index, 1);
+			actualizarTabla();
+		}
+
+		// Función para actualizar la tabla
+		function actualizarTabla() {
+			let tbody = document.getElementById("tbody");
+			tbody.innerHTML = "";
+
+			for (let i = 0; i < personas.length; i++) {
+				let persona = personas[i];
+
+				let tr = document.createElement("tr");
+
+				let tdNombre = document.createElement("td");
+				tdNombre.innerHTML = persona.nombre;
+				tr.appendChild(tdNombre);
+
+				let tdApellido = document.createElement("td");
+				tdApellido.innerHTML = persona.apellido;
+				tr.appendChild(tdApellido);
+
+				let tdEdad = document.createElement("td");
+				tdEdad.innerHTML = persona.edad;
+				tr.appendChild(tdEdad);
+
+				let tdAcciones = document.createElement("td");
+				let btnEliminar = document.createElement("button");
+				btnEliminar.className = "btn btn-danger";
+        btnEliminar.innerHTML = "Eliminar";
+			btnEliminar.onclick = function() {
+				eliminar(i);
+			}
+			tdAcciones.appendChild(btnEliminar);
+
+			tr.appendChild(tdAcciones);
+
+			tbody.appendChild(tr);
+		}
+
+		// Limpiar los campos del formulario
+		document.getElementById("nombre").value = "";
+		document.getElementById("apellido").value = "";
+		document.getElementById("edad").value = "";
+	}
+</script>
+
