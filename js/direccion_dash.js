@@ -1,18 +1,87 @@
-
-//Ingresar direcciones
 const curepoTable = document.getElementById("cuerpo-tabla");
-htmlTable = "";
-
 const tabla = document.getElementById("cuerpo-tabla");
-
 const btnRegistrar = document.getElementById("regNuevaDirec");
 
-//Funcion Obtener datos de registrar
+const campos = {
+  nombre: false,
+  direccion: false,
+  numero: false,
+  codPostal: false,
+};
+
+//VALIDACIONES
+$(function () {
+  //Validar cod postal
+  $("#nuevoCpo").mask("0000000");
+  $("#nuevoCpo").keyup(function () {
+    if (document.getElementById("nuevoCpo").value.length === 7) {
+      $("#nuevoCpo").removeClass("is-invalid");
+      $("#nuevoCpo").addClass("is-valid");
+      campos.codPostal = true;
+    } else {
+      $("#nuevoCpo").addClass("is-invalid");
+      campos.codPostal = false;
+    }
+  });
+
+  //Validar numero direccion
+  $("#nuevoNum").mask("0000");
+  $("#nuevoNum").keyup(function () {
+    if (document.getElementById("nuevoNum").value.length === 4) {
+      $("#nuevoNum").removeClass("is-invalid");
+      $("#nuevoNum").addClass("is-valid");
+      campos.numero = true;
+    } else {
+      $("#nuevoNum").addClass("is-invalid");
+      campos.numero = false;
+    }
+  });
+
+  //Validar vacios
+  $("#nuevoNombre").keyup(function () {
+    if (document.getElementById("nuevoNombre").value.length > 2) {
+      $("#nuevoNombre").removeClass("is-invalid");
+      $("#nuevoNombre").addClass("is-valid");
+      campos.nombre = true;
+    } else {
+      $("#nuevoNombre").addClass("is-invalid");
+      campos.nombre = false;
+    }
+  });
+
+  //Validar vacios
+  $("#nuevaDirec").keyup(function () {
+    if (document.getElementById("nuevaDirec").value.length > 2) {
+      $("#nuevaDirec").removeClass("is-invalid");
+      $("#nuevaDirec").addClass("is-valid");
+      campos.direccion = true;
+    } else {
+      $("#nuevaDirec").addClass("is-invalid");
+      campos.direccion = false;
+    }
+  });
+});
+
+function Reset() {
+  $("#staticBackdrop").modal("hide");
+  $("#form-new-direc").trigger("reset");
+
+  $("#nuevoNombre").removeClass("is-valid");
+  $("#nuevaDirec").removeClass("is-valid");
+  $("#nuevoNum").removeClass("is-valid");
+  $("#nuevoCpo").removeClass("is-valid");
+
+  campos.codPostal = false;
+  campos.direccion = false;
+  campos.nombre = false;
+  campos.numero = false;
+}
+
+//Funcion Para agregar nueva direccion
+var contador = 1;
 function nuevaDireccion() {
-  var contador = 1;
   class Direccion {
-    
-    constructor(id,nombre, direc, numero, region, comuna, cod_postal) {
+    constructor(id, nombre, direc, numero, region, comuna, cod_postal) {
       this.id = id;
       (this.nombre = nombre), (this.direc = direc), (this.numero = numero);
       this.region = region;
@@ -20,7 +89,7 @@ function nuevaDireccion() {
       this.cod_postal = cod_postal;
     }
   }
-  
+
   var userLogiado = JSON.parse(localStorage.getItem("userLogiado"));
   var userDirec = userLogiado.direc;
 
@@ -31,22 +100,7 @@ function nuevaDireccion() {
   const comuna = document.getElementById("regComuna").value;
   const cpostal = document.getElementById("nuevoCpo").value;
 
-  if (
-    nombre.length === 0 ||
-    direc.length === 0 ||
-    num.length < 4 ||
-    region.length === 0 ||
-    comuna.length === 0 ||
-    cpostal.length === 0
-  ) {
-    Swal.fire({
-      position: "center",
-      icon: "error",
-      title: "porfavor llene todos los campos",
-      showConfirmButton: false,
-      timer: 2000,
-    });
-  } else {
+  if (campos.codPostal && campos.direccion && campos.nombre && campos.numero) {
     var nuevaDireccion2 = new Direccion(
       contador,
       nombre,
@@ -63,28 +117,27 @@ function nuevaDireccion() {
       title: "Direccion registrada correctamente",
       showConfirmButton: false,
       timer: 1200,
-      padding: '30px'
+      padding: "30px",
     });
 
-    contador = contador+1;
-
+    contador = contador + 1;
     userDirec.push(nuevaDireccion2);
-    
-   
-    actualizarTabla();
     agregarLocalStorage(userLogiado);
-    location.reload();
-    
+    Reset();
+    actualizarTabla();
+
+  } else {
+    Swal.fire({
+      position: "center",
+      icon: "error",
+      title: "porfavor ingrese datos validos",
+      showConfirmButton: false,
+      timer: 2000,
+    });
   }
 }
 
-//Mascara de inputs
-$(function () {
-  $("#nuevoCpo").mask("0000000");
-  $("#nuevoNum").mask("0000");
-});
-
-//Funcion registrar nueva direccion
+//Funcion para actualizar la tabla
 function actualizarTabla() {
   var userLogiado = JSON.parse(localStorage.getItem("userLogiado"));
   const userDirec = userLogiado.direc;
@@ -116,19 +169,39 @@ function actualizarTabla() {
   });
 }
 
+//Funcion para elimiar tabla
 function eliminar(i) {
   var userLogiado = JSON.parse(localStorage.getItem("userLogiado"));
   var direccion = userLogiado.direc;
 
-  direccion.splice(i, 1);
-  actualizarTabla();
+  Swal.fire({
+    title: "Estas seguro?",
+    text: `Quieres eliminar esta direccion`,
+    icon: "warning",
+    showCancelButton: true,
+    confirmButtonColor: "#3085d6",
+    cancelButtonColor: "#d33",
+    cancelButtonText: "Cancelar",
+    confirmButtonText: "Si, Eliminar!",
+  }).then((result) => {
+    if (result.isConfirmed) {
+      Swal.fire(
+        "Eliminado!",
+        "Tu direccion se a eliminado correctamente.",
+        "success"
+      );
+      direccion.splice(i, 1);
+      actualizarTabla();
 
-  console.log(direccion);
+      console.log(direccion);
 
-  agregarLocalStorage(userLogiado);
-  actualizarTabla();
+      agregarLocalStorage(userLogiado);
+      actualizarTabla();
+    }
+  });
 }
 
+//Funcion para agregar a local storage
 function agregarLocalStorage(newUserLogiado) {
   var users = JSON.parse(localStorage.getItem("localUserList"));
 
@@ -143,7 +216,7 @@ function agregarLocalStorage(newUserLogiado) {
   delete localStorage.localUserList;
   localStorage.setItem("localUserList", JSON.stringify(users));
 
-  localStorage.removeItem(userLogiado);
+  delete localStorage.userLogiado;
   localStorage.setItem("userLogiado", JSON.stringify(newUserLogiado));
 }
 
