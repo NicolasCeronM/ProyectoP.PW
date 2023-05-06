@@ -145,15 +145,21 @@
 
             <div class="col-lg-6">
 
-                <div class="form-floating mb-3 is-invalid">
-                    <input type="password" class="form-control" id="regPass" placeholder="name@example.com"
-                        name="regPass">
-                    <label for="floatingInput">Contraseña</label>
+                <div class="input-group mb-3">
+                    <div class="form-floating">
+                        <input type="password" class="form-control" id="regPass" placeholder="Username" name="regPass">
+                        <label for="floatingInputGroup1">Contraseña</label>
+                        <div class="invalid-feedback">
+                            <P id="fbContra">Ingrese una contraseña valida (entre 5 y 12 digitos)</P>
+                        </div>
 
-                    <div class="invalid-feedback">
-                        <P id="fbContra">Ingrese una contraseña valida (entre 5 y 12 digitos)</P>
+                        <button class="btn mt-2" id="ver-contraseña" type="button"><i class="fa-regular fa-eye me-2"
+                                id="ver-icon"></i>Mostrar contraseñas</button>
                     </div>
+
                 </div>
+
+
 
             </div>
 
@@ -167,6 +173,7 @@
                         Las contraseñas deben coincidir
                     </div>
                 </div>
+
 
             </div>
 

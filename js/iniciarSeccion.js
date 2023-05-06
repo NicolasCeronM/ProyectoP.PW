@@ -10,6 +10,27 @@ let usarioLogiado = "";
 
 bIniciar.addEventListener("click", login);
 
+var ver = document.getElementById('ver-contraseña');
+var verIcon = document.getElementById('ver-icon');
+function Mostrar(e){
+  e.preventDefault();
+
+  if(pass.type === 'password'){
+
+    pass.type = 'text'
+    verIcon.classList.remove('fa-regular','fa-eye');
+    verIcon.classList.add('fa-regular', 'fa-eye-slash');
+    
+    
+
+  }else{
+    pass.type = 'password';
+    verIcon.classList.remove('fa-regular', 'fa-eye-slash');
+    verIcon.classList.add('fa-regular','fa-eye');
+  }
+}
+ver.addEventListener('click',Mostrar);
+
 function login() {
   for (let i = 0; i < userList.length; i++) {
     console.log(userList[i].correo);

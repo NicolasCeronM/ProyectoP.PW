@@ -308,6 +308,28 @@ $(function () {
   $("#regNum").mask("0000");
 });
 
+var ver = document.getElementById('ver-contraseña');
+var verIcon = document.getElementById('ver-icon');
+function Mostrar(e){
+
+  e.preventDefault();
+  if(regPass.type === 'password'){
+
+    regPass.type = 'text'
+    regPassRep.type = 'text'
+    verIcon.classList.remove('fa-regular','fa-eye');
+    verIcon.classList.add('fa-regular', 'fa-eye-slash');
+
+  }else{
+    regPass.type = 'password';
+    regPassRep.type = 'password'
+    verIcon.classList.remove('fa-regular', 'fa-eye-slash');
+    verIcon.classList.add('fa-regular','fa-eye');
+  }
+}
+ver.addEventListener('click',Mostrar);
+
+
 /*
 ***********************************************************
                       MAIN
