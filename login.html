@@ -105,10 +105,16 @@
                     <div class="form-floating mt-4">
                         <input type="text" class="form-control" id="login-correo" placeholder="name@example.com">
                         <label for="login-correo">Correo</label>
+                        <div class="invalid-feedback">
+                            <p id="fbCorreo">Ingrese correo valido (ejemplo@ejemplo.com)</p>
+                        </div>
                     </div>
                     <div class="form-floating mt-4">
                         <input type="password" class="form-control" id="login-contra" placeholder="Password">
                         <label for="floatingPassword">Contraseña</label>
+                        <div class="invalid-feedback">
+                            <P id="fbContra">Ingrese una contraseña valida (entre 5 y 12 digitos)</P>
+                        </div>
                         <button class="btn mt-2" id="ver-contraseña" type="button">
                             <i class="fa-regular fa-eye me-2" id="ver-icon"></i>Mostrar contraseña</button>
                     </div>
@@ -338,7 +344,7 @@
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
     <!--Importar jquerry-->
-   
+
     <script src="js/iniciarSeccion.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <!--Importar Boostrap-->
