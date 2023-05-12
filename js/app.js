@@ -253,7 +253,7 @@ const validarCorreo = () => {
     correo.classList.add("is-invalid");
 
     var error = document.getElementById("fbCorreo");
-    error.innerHTML = "Ingrese un correo valido";
+    error.innerHTML = "Ingrese correo valido (ejemplo@ejemplo.com)";
     campos["regCorreo"] = false;
   } else {
     correo.classList.remove("is-invalid");
